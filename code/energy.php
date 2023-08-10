@@ -17,11 +17,12 @@ $energy_type = htmlspecialchars($energy_type);
 $bat_name = htmlspecialchars($bat_name);
 $percent = htmlspecialchars($percent);
 
-$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '"$token"' AND computer_id = "$id;
+$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '$token' AND computer_id = "$id;
 $result = mysql_query($query);
 
 if ($result) {
-	$query2 = "UPDATE energy_storage SET bat_name = '"$bat_name"', energy_type = '"$energy_type."', percent = '"$percent."' WHERE token = '"$token."'";
+	$query2 = "UPDATE energy_storage SET bat_name = '$bat_name' energy_type=  '$energy_type' percent = '$percent' WHERE token = '$token'"; 
+	//"UPDATE energy_storage SET bat_name = '"$bat_name"', energy_type = '$energy_type', percent = '"$percent' WHERE token = '$token'" ;
 	$result2 = mysql_query($query2);
 
 	echo $version;
