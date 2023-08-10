@@ -1,12 +1,13 @@
 ---------------------------------------------
---	Tank module for caftNanny
---	by demethan
+--	Tank module for CloudNanny
+--	Made by demethan
 --	www.breakfastcraft.com
+--  Updated by SkyNetCloud
 --  skynetcloud.ca
 --  2015 08 12  demethan: 
 --		-fixed modem support
 --		-did some error magement
--- 		-added visual bar	
+-- 		-added visual bar
 ---------------------------------------------
 
 -- variables
@@ -14,7 +15,7 @@
 local containers={}
 local version = 1
 
-local installer = "Q8ah3K9S"
+local installer = "a3Rs0Tzg"
 local token = '0'
 local module_name = ''
 local username = ''

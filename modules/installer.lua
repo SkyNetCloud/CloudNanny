@@ -1,9 +1,9 @@
 -----------------PASTEBINs--------------------------
-installer = "Q8ah3K9S"
-player_module = "rWp0GXDW"
-redstone_module = "KkCYWkSU"
-fluid_module = "x7K3zUAC"
-energy_module = "RxLuZWHp"
+installer = "a3Rs0Tzg"
+player_module = "5ZWgeGMH"
+redstone_module = "jxJuua1f"
+fluid_module = "efMuVtTy"
+energy_module = "mXX5fU4g"
 hash_api = "FLQ68J88"
 startup = "KnmEN37h"
 ---------------------------------------------
@@ -36,7 +36,7 @@ end
     Remove brackets to enable
 local function getFiles()
     local files = {
-        installer = "Q8ah3K9S",
+        installer = "a3Rs0Tzg",
         player_module = "rWp0GXDW",
         redstone_module = "KkCYWkSU",
         fluid_module = "x7K3zUAC",

@@ -63,7 +63,7 @@
               <h4>2. Choose what module you want to setup <a href="modules.php">from this list</a></h4>
               <h4>3. On an in-game advanced computer run:</h4>
               <div style="border-style:solid;border-width:1px;background-color:#cccccc;padding:15px;width:225px;margin-left:30px;">
-                  pastebin run Q8ah3K9S
+                  pastebin run a3Rs0Tzg
               </div> 
               <h4>4. Select a module from the on-screen list</h4>
               <img src="img/setup/select_module.png"/><p>
@@ -98,7 +98,7 @@
               <img src="img/skin.PNG" style="height:200px;">
             </div>
             <div class="large-4 columns" style="height:200px">
-              <p><h2 style="font-weight:bold;color:#cccccc;">CloudNanny.org</h2>
+              <p><h2 style="font-weight:bold;color:#cccccc;">skynetcloud.ca</h2>
               <p style="color:#cccccc;font-size:18px;">Contribute to this open-source project on GitHub!</p>
               <a href="https://github.com/SkyNetCloud/CloudNanny"><img src="img/git.png" style="width:100px;"></a>
             </div>

@@ -1,8 +1,7 @@
 ---------------------------------------------
---      Power module for caftNanny
---      by demethan
---      www.breakfastcraft.com
---		skynetcloud.ca
+--      Power module for CloudNanny
+--      by demethan Reworked by SkyNetCloud
+--      skynetcloud.ca
 --  	2015-08-11: added storage block detection
 --					added visual storage bar
 --					fixed modem support
@@ -13,7 +12,7 @@
 local bat={}
 local version = 1
 
-local installer = "Q8ah3K9S"
+local installer = "a3Rs0Tzg"
 local token = '0'
 local module_name = ''
 local username = ''

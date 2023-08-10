@@ -3,7 +3,7 @@
 --allowedPlayerArray={["Topher"]=true,["nunley21"]=true,["Demethan"]=true,["waerloga"]=true}
 
 -- pastebin for installer
-local installer = "Q8ah3K9S"
+local installer = "a3Rs0Tzg"
 -- players ignored by senors
 local allowedPlayerArray={}
 -- inventory arrays to compare

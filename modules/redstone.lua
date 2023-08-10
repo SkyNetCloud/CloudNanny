@@ -3,7 +3,7 @@
 local version = 2
 
 -- pastebin for installer
-local installer = "Q8ah3K9S"
+local installer = "a3Rs0Tzg"
 local time = 0
 local token = '0'
 -- this scanners name
