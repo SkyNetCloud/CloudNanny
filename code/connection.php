@@ -1,14 +1,12 @@
 <?php
+# Fill our vars and run on cli
+# $ php -f db-connect-test.php
 
-$servername =  "192.168.0.62"
-$username = "cloudnanny"
-$password = "-Ke[RG(XqO1q8qIe"
-$databaseName = "cloudnanny" 
+$dbname = 'cloudnanny';
+$dbuser = 'cloudpc';
+$dbpass = '-Ke[RG(XqO1q8qIe';
+$dbhost = 'localhost';
 
-
-//open database connection
-$dbConn = mysqli_connect($servername, $username, $password, $databaseName)
-	or die(print_r(mysql_error()));
-mysql_select_db('') or die(print_r(mysql_error()));
-
+$link = mysqli_connect($dbhost, $dbuser, $dbpass) or die("Unable to Connect to '$dbh>
+mysqli_select_db($link, $dbname) or die("Could not open the db '$dbname'");
 ?>
