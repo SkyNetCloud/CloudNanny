@@ -26,10 +26,9 @@ if ($result) {
 	echo 'error: token update query failed.';
 }
 
-
-function dbEsc($theString) {
-	$theString = $dbConn -> real_escape_string($theString);
-	return $theString;
-}
+// function dbEsc($theString) {
+// 	$theString = $dbConn -> real_escape_string($theString);
+// 	return $theString;
+// }
 
 ?>

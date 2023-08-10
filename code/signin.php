@@ -82,10 +82,10 @@ function createEnergyEntry($dbConn, $token, $id) {
 	$result = mysql_query($query);
 }
 
-function dbEsc($theString) {
-	$theString = $dbConn -> real_escape_string($theString);
-	return $theString;
-}
+// function dbEsc($theString) {
+// 	$theString = $dbConn -> real_escape_string($theString);
+// 	return $theString;
+// }
 
 function dbError(&$xmlDoc, &$xmlNode, $theMessage) {
 	$errorNode = $xmlDoc->createElement('mysqlError', $theMessage);

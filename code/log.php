@@ -36,10 +36,10 @@ function validateToken($token, $id) {
 	return $row['user_id'];
 }
 
-function dbEsc($theString) {
-	$theString = mysql_real_escape_string($theString);
-	return $theString;
-}
+// function dbEsc($theString) {
+// 	$theString = mysql_real_escape_string($theString);
+// 	return $theString;
+// }
 
 function dbError(&$xmlDoc, &$xmlNode, $theMessage) {
 	$errorNode = $xmlDoc->createElement('mysqlError', $theMessage);

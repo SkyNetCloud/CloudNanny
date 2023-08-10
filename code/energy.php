@@ -4,11 +4,11 @@ $version = 1;
 
 require_once('connection.php');
 
-$token = $_POST['token'];
-$id = $_POST['id'];
-$bat_name = $_POST['bat_name'];
-$energy_type = $_POST['energy_type'];
-$percent = $_POST['percent'];
+$token = $_POST['token']: "";
+$id = $_POST['id'] : "";
+$bat_name = $_POST['bat_name'] : "";
+$energy_type = $_POST['energy_type'] : "";
+$percent = $_POST['percent'] : "" ;
 
 $energy_type = htmlspecialchars($energy_type);
 $bat_name = htmlspecialchars($bat_name);
@@ -27,9 +27,9 @@ if ($result) {
 }
 
 
-function dbEsc($theString) {
-	$theString = $dbConn -> real_escape_string($theString);;
-	return $theString;
-}
+// function dbEsc($theString) {
+// 	$theString = $dbConn -> real_escape_string($theString);;
+// 	return $theString;
+// }
 
 ?>

@@ -2,10 +2,10 @@
 
 require_once('connection.php');
 
-function dbEsc($theString) {
-	$theString = mysql_real_escape_string($dbConn, $theString);
-	return $theString;
-}
+// function dbEsc($theString) {
+// 	$theString = mysql_real_escape_string($dbConn, $theString);
+// 	return $theString;
+// }
 
 function dbError(&$xmlDoc, &$xmlNode, $theMessage) {
 	$errorNode = $xmlDoc->createElement('mysqlError', $theMessage);
