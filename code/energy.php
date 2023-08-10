@@ -30,7 +30,7 @@ $query = "UPDATE tokens SET last_seen = NOW() WHERE token = '$tokenstring' AND c
 $result = $mysqli->query($query);
 
 if ($result) {
-	$query2 = "UPDATE energy_storage SET bat_name = '$bat_name', energy_type = '$energytypestring', percent = '"$percentstring"' WHERE token = '"$tokenstring."'";
+	$query2 = "UPDATE energy_storage SET bat_name = '$bat_name', energy_type = '$energytypestring', percent = '$percentstring' WHERE token = '$tokenstring'";
 	$result2 = $mysqli->query($query2);
 
 	echo $version;
