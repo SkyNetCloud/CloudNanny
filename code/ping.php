@@ -11,7 +11,7 @@ logPing($token, $id, $version);
 
 function logPing($token, $id, $version) {
 	$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".dbEsc($token)."' AND computer_id = ".dbEsc($id);
-	$result = mysqli_query($dbConn, $query);
+	$result = mysql_query($query);
 	if ($result) {
 		echo $version;
 	} else {
@@ -19,8 +19,8 @@ function logPing($token, $id, $version) {
 	}
 }
 
-function dbEsc($dbConn, $theString) {
-	$theString = mysqli_real_escape_string($dbConn, $theString);
+function dbEsc($theString) {
+	$theString = mysql_real_escape_string($theString);
 	return $theString;
 }
 

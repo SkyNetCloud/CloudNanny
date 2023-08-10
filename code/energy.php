@@ -15,11 +15,11 @@ $bat_name = htmlspecialchars($bat_name);
 $percent = htmlspecialchars($percent);
 
 $query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".dbEsc($token)."' AND computer_id = ".dbEsc($id);
-$result = mysqli_query($dbConn, $query);
+$result = mysql_query($query);
 
 if ($result) {
 	$query2 = "UPDATE energy_storage SET bat_name = '".dbEsc($bat_name)."', energy_type = '".dbEsc($energy_type)."', percent = '".dbEsc($percent)."' WHERE token = '".dbEsc($token)."'";
-	$result2 = mysqli_query($query2);
+	$result2 = mysql_query($query2);
 
 	echo $version;
 } else {
@@ -27,8 +27,8 @@ if ($result) {
 }
 
 
-function dbEsc($dbConn, $theString) {
-	$theString = mysqli_real_escape_string($dbConn, $theString);
+function dbEsc($theString) {
+	$theString = mysql_real_escape_string($theString);
 	return $theString;
 }
 

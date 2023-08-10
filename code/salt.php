@@ -7,20 +7,20 @@ $username = htmlspecialchars($username);
 require_once('connection.php');
 $salt = '';
 $query = "select salt from users where username = '".dbEsc($username). "';";	
-$result = mysqli_query($dbConn, $query);
+$result = mysql_query($query);
 
 
 
 if ($result) {
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	$row = mysql_fetch_array($result, MYSQL_ASSOC);
 	$salt = $row['salt'];
 	echo $salt;
 } else {
 	echo 'error';
 }
 
-function dbEsc($dbConn, $theString) {
-	$theString = mysqli_real_escape_string($dbConn, $theString);
+function dbEsc($theString) {
+	$theString = mysql_real_escape_string($theString);
 	return $theString;
 }
 
