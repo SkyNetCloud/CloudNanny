@@ -1,7 +1,9 @@
 <?php
 
+require_once('connection.php');
+
 function dbEsc($theString) {
-	$theString = mysql_real_escape_string($theString);
+	$theString = mysql_real_escape_string($dbConn, $theString);
 	return $theString;
 }
 
