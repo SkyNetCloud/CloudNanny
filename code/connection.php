@@ -1,12 +1,7 @@
 <?php
-# Fill our vars and run on cli
-# $ php -f db-connect-test.php
 
-$dbname = 'cloudnanny';
-$dbuser = 'cloudpc';
-$dbpass = '-Ke[RG(XqO1q8qIe';
-$dbhost = 'localhost';
+//open database connection
+$dbConn = mysqli_connect('localhost', 'cloudpc', '-Ke[RG(XqO1q8qIe','cloudnanny') or die(print_r(mysql_error()));
+mysql_select_db('cloudnanny') or die(print_r(mysql_error()));
 
-$link = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)
-
-$mysqli->select_db($dbname);
+?>
