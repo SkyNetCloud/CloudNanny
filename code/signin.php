@@ -27,15 +27,15 @@ function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 	
 	// $salt = '';
 	// $query = "select salt from users where username = '".dbEsc($username). "';";	
-	// $result = mysql_query($query);
-	// $row = mysql_fetch_array($result, MYSQL_ASSOC);
+	// $result = mysqli_query($dbConn, $query);
+	// $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	// $salt = $row['salt'];
 	// $hash = sha1($salt.$password);
 	
 	$query2 = "select user_id from users where username = '" . dbEsc($username) . "' AND password = '" . dbEsc($password) . "';";
 	
-	$result2 = mysql_query($query2);
-	$row2 = mysql_fetch_array($result2, MYSQL_ASSOC);
+	$result2 = mysqli_query($dbConn, $query2);
+	$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 
 	if ($row2['user_id'] != '') {
 		$token = createToken($dbConn, $row2['user_id'], $name, $id, $username, $module_type);
@@ -59,7 +59,7 @@ function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 function createToken($dbConn, $user_id, $name, $id, $username, $module_type) {
 	$token = rand().rand().rand().rand();
 	$query = "INSERT INTO tokens (token, user_id, computer_name, computer_id, module_type) VALUES ('".$token."', '".dbEsc($user_id)."', '".dbEsc($name)."', '".dbEsc($id)."', '".dbEsc($module_type)."')";
-	$result = mysql_query($query);
+	$result = mysqli_query($dbConn, $query);
 	if ($result) {
 		return $token;
 	} else {
@@ -69,17 +69,17 @@ function createToken($dbConn, $user_id, $name, $id, $username, $module_type) {
 
 function createRedstoneEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO redstone_controls (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
-	$result = mysql_query($query);
+	$result = mysqli_query($dbConn, $query);
 }
 
 function createTankEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO tanks (token) VALUES ('".dbEsc($token)."')";
-	$result = mysql_query($query);
+	$result = mysqli_query($dbConn, $query);
 }
 
 function createEnergyEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO energy_storage (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
-	$result = mysql_query($query);
+	$result = mysqli_query($dbConn, $query);
 }
 
 // function dbEsc($theString) {
