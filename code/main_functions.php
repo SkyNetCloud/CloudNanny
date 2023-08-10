@@ -25,7 +25,7 @@ function doesUserExist($dbconn, $xmlDoc, $id, $type) {
 	if (!($result)) {
 		$statusNode = $xmlDoc->createElement('status', $query);
 
-		dbError($xmlDoc, $recordDataNode, mysqli_error());
+		dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 	} else {
 		$statusNode = $xmlDoc->createElement('status', 'success');
 	}
@@ -53,7 +53,7 @@ function addGoogleUser($dbconn, $xmlDoc, $google_id, $name, $email, $image_url) 
 	if (!($result)) {
 		$statusNode = $xmlDoc->createElement('status', $query);
 
-		dbError($xmlDoc, $recordDataNode, mysqli_error());
+		dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 	} else {
 		$statusNode = $xmlDoc->createElement('status', $google_id);
 	}
@@ -84,7 +84,7 @@ function signIn($dbconn, $xmlDoc, $username, $password) {
 	if (!($result2)) {
 		$statusNode = $xmlDoc->createElement('status', $query2);
 
-		dbError($xmlDoc, $recordDataNode, mysqli_error());
+		dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 	} else {
 		$statusNode = $xmlDoc->createElement('status', '');
 	}
@@ -117,7 +117,7 @@ function addNewUser($dbconn, $xmlDoc, $username, $password, $email) {
 	if (!($result)) {
 		$statusNode = $xmlDoc->createElement('status', $query);
 
-		dbError($xmlDoc, $recordDataNode, mysqli_error());
+		dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 	} else {
 		$statusNode = $xmlDoc->createElement('token', $user_id);
 	}
@@ -137,7 +137,7 @@ function getConnections($dbconn, $xmlDoc, $user_id, $type) {
 	if (!($result)) {
 		$statusNode = $xmlDoc->createElement('status', $query);
 
-		dbError($xmlDoc, $recordDataNode, mysqli_error());
+		dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 	} else {
 		$statusNode = $xmlDoc->createElement('status', 'success');
 	}
@@ -264,7 +264,7 @@ function loadRedstoneControls($dbconn, $xmlDoc, $user_id) {
 		if (!($result2)) {
 			$statusNode = $xmlDoc->createElement('status', $query);
 
-			dbError($xmlDoc, $recordDataNode, mysqli_error());
+			dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 		} else {
 			$statusNode = $xmlDoc->createElement('status', 'success');
 		}
@@ -314,7 +314,7 @@ function setRedstoneOutput($dbconn, $xmlDoc, $token, $side, $value, $type) {
 	if (!($result)) {
 		$statusNode = $xmlDoc->createElement('status', $query);
 
-		dbError($xmlDoc, $recordDataNode, mysqli_error());
+		dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 	} else {
 		$statusNode = $xmlDoc->createElement('status', 'success');
 	}
@@ -348,7 +348,7 @@ function getFluidLevels($dbconn, $xmlDoc, $user_id) {
 		if (!($result2)) {
 			$statusNode = $xmlDoc->createElement('status', $query);
 
-			dbError($xmlDoc, $recordDataNode, mysqli_error());
+			dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 		} else {
 			$statusNode = $xmlDoc->createElement('status', 'success');
 		}
@@ -393,7 +393,7 @@ function getEnergyLevels($dbconn, $xmlDoc, $user_id) {
 		if (!($result2)) {
 			$statusNode = $xmlDoc->createElement('status', $query);
 
-			dbError($xmlDoc, $recordDataNode, mysqli_error());
+			dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 		} else {
 			$statusNode = $xmlDoc->createElement('status', 'success');
 		}
@@ -420,7 +420,7 @@ function removeModule($dbconn, $xmlDoc, $token) {
 	if (!($result2)) {
 			$statusNode = $xmlDoc->createElement('status', $query);
 
-			dbError($xmlDoc, $recordDataNode, mysqli_error());
+			dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 		} else {
 			$statusNode = $xmlDoc->createElement('status', 'success');
 		}
@@ -486,7 +486,7 @@ function createRedstoneEvent($dbconn, $xmlDoc, $storageToken, $redstoneToken, $t
 	if (!($result)) {
 		$statusNode = $xmlDoc->createElement('status', $query);
 
-		dbError($xmlDoc, $recordDataNode, mysqli_error());
+		dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 	} else {
 		$statusNode = $xmlDoc->createElement('status', 'success');
 	}
@@ -551,7 +551,7 @@ function removeEvent($dbconn, $xmlDoc, $event_id) {
 	if (!($result2)) {
 			$statusNode = $xmlDoc->createElement('status', $query);
 
-			dbError($xmlDoc, $recordDataNode, mysqli_error());
+			dbError($xmlDoc, $recordDataNode, mysqli_error($dbConn));
 		} else {
 			$statusNode = $xmlDoc->createElement('status', 'success');
 		}
