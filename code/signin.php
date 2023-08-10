@@ -34,7 +34,7 @@ function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 	
 	$query2 = "select user_id from users where username = '" . dbEsc($username) . "' AND password = '" . dbEsc($password) . "';";
 	
-	$result2 = mysqli_query($query2);
+	$result2 = mysqli_query($dbConn, $query2);
 	$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 
 	if ($row2['user_id'] != '') {
