@@ -15,7 +15,7 @@ $bat_name = htmlspecialchars($bat_name);
 $percent = htmlspecialchars($percent);
 
 $query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".dbEsc($token)."' AND computer_id = ".dbEsc($id);
-$result = mysqli_query($query);
+$result = mysqli_query($dbConn, $query);
 
 if ($result) {
 	$query2 = "UPDATE energy_storage SET bat_name = '".dbEsc($bat_name)."', energy_type = '".dbEsc($energy_type)."', percent = '".dbEsc($percent)."' WHERE token = '".dbEsc($token)."'";

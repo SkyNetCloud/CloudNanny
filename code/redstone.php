@@ -29,7 +29,7 @@ getRsOutputs($token, $id, $version);
 
 function getRsOutputs($token, $id, $version) {
 	$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".dbEsc($token)."' AND computer_id = ".dbEsc($id);
-	$result = mysqli_query($query);
+	$result = mysqli_query($dbConn, $query);
 	
 	if ($result) {
 		$query2 = "SELECT * from redstone_controls WHERE token = '".dbEsc($token)."'";
@@ -45,7 +45,7 @@ function getRsOutputs($token, $id, $version) {
 
 function checkEvents($token) {
 	$query = "SELECT * from redstone_events WHERE redstone_token = '".dbEsc($token)."'";
-	$result = mysqli_query($query);
+	$result = mysqli_query($dbConn, $query);
 	
 	while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
 		$query2 = "SELECT * FROM tanks WHERE token = '".$row['storage_token']."'";
