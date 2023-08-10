@@ -174,7 +174,7 @@ function login()
 	term.clear()
 	bars()
 	draw_text_term(1, 3, 'Register module to your CraftNanny account.', colors.lime, colors.black)
-	draw_text_term(1, 4, 'Create an account at www.craftnanny.org', colors.lightGray, colors.black)
+	draw_text_term(1, 4, 'Create an account at skynetcloud.ca', colors.lightGray, colors.black)
 	
 	draw_text_term(1, 6, 'Username: ', colors.lime, colors.black)
 	term.setTextColor(colors.white)

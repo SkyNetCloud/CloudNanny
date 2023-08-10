@@ -34,7 +34,7 @@ function bars()
 	draw_line_term(1, 1, 51, colors.lime)
 	draw_line_term(1, 19, 51, colors.lime)
 	draw_text_term(15, 1, 'CraftNanny Fluid Module', colors.gray, colors.lime)
-	draw_text_term(10, 19, 'www.craftnanny.org', colors.gray, colors.lime)
+	draw_text_term(10, 19, 'skynetcloud.ca', colors.gray, colors.lime)
 end
 
 function terminal_screen()
