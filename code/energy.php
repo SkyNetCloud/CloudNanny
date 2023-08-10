@@ -28,7 +28,7 @@ if ($result) {
 
 
 function dbEsc($theString) {
-	$theString = mysqli_real_escape_string($dbConn,$theString);
+	$theString = $dbConn -> real_escape_string($theString);;
 	return $theString;
 }
 

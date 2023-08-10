@@ -83,7 +83,7 @@ function createEnergyEntry($dbConn, $token, $id) {
 }
 
 function dbEsc($theString) {
-	$theString = mysql_real_escape_string($theString);
+	$theString = $dbConn -> real_escape_string($theString);
 	return $theString;
 }
 
