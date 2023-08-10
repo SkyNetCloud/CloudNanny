@@ -7,7 +7,8 @@ $DATABASE_PASS = 'SkyNetCloud#';
 $DATABASE_NAME = 'cloudnanny';
 
 //open database connection
-$mysqli = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS) or die(print_r(mysqli_error($mysqli)));
+$mysqli = mysqli_connect('192.168.0.62', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
+ or die(print_r(mysqli_error($mysqli)));
 if ( mysqli_connect_errno() ) {
 	// If there is an error with the connection, stop the script and display the error.
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());

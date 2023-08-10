@@ -6,6 +6,11 @@ ini_set('log_errors', 'Off');
 
 require_once('main_functions.php');
 
+$mysqli = mysqli_connect('192.168.0.62', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
+ or die(print_r(mysqli_error($mysqli)));
+
+
+
 // toggle document type xml/html
 $usexml = 1;
 $debugMode = true;
@@ -47,7 +52,7 @@ $xmlRoot = $xmlDoc->createElement('xml_root');
 $xmlDoc->appendChild($xmlRoot);
 
 //open database connection
-require_once('connection.php');
+//require_once('connection.php');
 
 $query = '';
 
