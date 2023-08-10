@@ -12,9 +12,9 @@ $name = htmlspecialchars($name);
 $username = htmlspecialchars($username);
 $module_type = htmlspecialchars($module_type);
 
-signIn($username, $password, $name, $link, $id, $module_type);
+signIn($username, $password, $name, $dbConn, $id, $module_type);
 
-function signIn($username, $password, $name, $link, $id, $module_type) {
+function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 
 	// never trust data coming from lua
 	$username = htmlspecialchars($username);
@@ -38,16 +38,16 @@ function signIn($username, $password, $name, $link, $id, $module_type) {
 	$row2 = mysql_fetch_array($result2, MYSQL_ASSOC);
 
 	if ($row2['user_id'] != '') {
-		$token = createToken($link, $row2['user_id'], $name, $id, $username, $module_type);
+		$token = createToken($dbConn, $row2['user_id'], $name, $id, $username, $module_type);
 		
 		if ($module_type == '4') {
-			createRedstoneEntry($link, $token, $id);
+			createRedstoneEntry($dbConn, $token, $id);
 		}
 		if ($module_type == '3') {
-			createTankEntry($link, $token, $id);
+			createTankEntry($dbConn, $token, $id);
 		}
 		if ($module_type == '2') {
-			createEnergyEntry($link, $token, $id);
+			createEnergyEntry($dbConn, $token, $id);
 		}
 		
 		echo $token;
@@ -56,7 +56,7 @@ function signIn($username, $password, $name, $link, $id, $module_type) {
 	}
 }
 
-function createToken($link, $user_id, $name, $id, $username, $module_type) {
+function createToken($dbConn, $user_id, $name, $id, $username, $module_type) {
 	$token = rand().rand().rand().rand();
 	$query = "INSERT INTO tokens (token, user_id, computer_name, computer_id, module_type) VALUES ('".$token."', '".dbEsc($user_id)."', '".dbEsc($name)."', '".dbEsc($id)."', '".dbEsc($module_type)."')";
 	$result = mysql_query($query);
@@ -67,17 +67,17 @@ function createToken($link, $user_id, $name, $id, $username, $module_type) {
 	}
 }
 
-function createRedstoneEntry($link, $token, $id) {
+function createRedstoneEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO redstone_controls (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
 	$result = mysql_query($query);
 }
 
-function createTankEntry($link, $token, $id) {
+function createTankEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO tanks (token) VALUES ('".dbEsc($token)."')";
 	$result = mysql_query($query);
 }
 
-function createEnergyEntry($link, $token, $id) {
+function createEnergyEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO energy_storage (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
 	$result = mysql_query($query);
 }

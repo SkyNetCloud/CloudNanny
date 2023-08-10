@@ -70,7 +70,7 @@ foreach ($actionArray as $action) {
 			
 			break;
 		case "getPosts":
-			$xmlRoot->appendChild(getPosts($link, $xmlDoc, $_REQUEST['page'], $_REQUEST['sub'], $_REQUEST['user'], $_REQUEST['comments']));
+			$xmlRoot->appendChild(getPosts($dbConn, $xmlDoc, $_REQUEST['page'], $_REQUEST['sub'], $_REQUEST['user'], $_REQUEST['comments']));
 			
 			break;
 		case "email":
@@ -210,7 +210,7 @@ function sendpage($page, $usexml) {
 }
 
 // close database connection
-mysql_close($link);
+mysql_close($dbConn);
 
 // save/send the XML document
 $xmlString = $xmlDoc->saveXML();
