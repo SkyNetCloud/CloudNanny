@@ -34,7 +34,7 @@ function getRsOutputs($token, $id, $version) {
 	if ($result) {
 		$query2 = "SELECT * from redstone_controls WHERE token = '".dbEsc($token)."'";
 		$result2 = mysqli_query($query2);
-		$row2 = mysqli_fetch_array($result2, MYSQL_ASSOC);
+		$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 	
 		$returnString = $version.", ".$row2['top'].", ".$row2['bottom'].", ".$row2['back'].", ".$row2['front'].", ".$row2['left_side'].", ".$row2['right_side'];
 		echo $returnString;
@@ -47,10 +47,10 @@ function checkEvents($token) {
 	$query = "SELECT * from redstone_events WHERE redstone_token = '".dbEsc($token)."'";
 	$result = mysqli_query($dbConn, $query);
 	
-	while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
+	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 		$query2 = "SELECT * FROM tanks WHERE token = '".$row['storage_token']."'";
 		$result2 = mysqli_query($query2);
-		$row2 = mysqli_fetch_array($result2, MYSQL_ASSOC);
+		$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 		
 		$side = '';
 		if ($row['side'] == 'top_side') {
@@ -81,7 +81,7 @@ function checkEvents($token) {
 		
 		$query2 = "SELECT * FROM energy_storage WHERE token = '".$row['storage_token']."'";
 		$result2 = mysqli_query($query2);
-		$row2 = mysqli_fetch_array($result2, MYSQL_ASSOC);
+		$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 		
 		$side = '';
 		if ($row['side'] == 'top_side') {

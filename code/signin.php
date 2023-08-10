@@ -28,14 +28,14 @@ function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 	// $salt = '';
 	// $query = "select salt from users where username = '".dbEsc($username). "';";	
 	// $result = mysqli_query($dbConn, $query);
-	// $row = mysqli_fetch_array($result, MYSQL_ASSOC);
+	// $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	// $salt = $row['salt'];
 	// $hash = sha1($salt.$password);
 	
 	$query2 = "select user_id from users where username = '" . dbEsc($username) . "' AND password = '" . dbEsc($password) . "';";
 	
 	$result2 = mysqli_query($query2);
-	$row2 = mysqli_fetch_array($result2, MYSQL_ASSOC);
+	$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 
 	if ($row2['user_id'] != '') {
 		$token = createToken($dbConn, $row2['user_id'], $name, $id, $username, $module_type);

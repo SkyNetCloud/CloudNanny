@@ -12,7 +12,7 @@ $result = mysqli_query($dbConn, $query);
 
 
 if ($result) {
-	$row = mysqli_fetch_array($result, MYSQL_ASSOC);
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	$salt = $row['salt'];
 	echo $salt;
 } else {

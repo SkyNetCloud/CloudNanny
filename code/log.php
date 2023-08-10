@@ -32,7 +32,7 @@ function enterRecord($ign, $event, $discription, $user_id, $token) {
 function validateToken($token, $id) {
 	$query = "select user_id from tokens where token = '".dbEsc($token). "' AND computer_id = ".dbEsc($id). ";";
 	$result = mysqli_query($dbConn, $query);
-	$row = mysqli_fetch_array($result, MYSQL_ASSOC);
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	return $row['user_id'];
 }
 
