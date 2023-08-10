@@ -1,7 +1,7 @@
 <?php
 
 $mysqli = mysqli_connect('192.168.0.62', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
- or die(print_r(mysqli_error($mysqli)));
+
 
 
 function dbEsc($theString) {
