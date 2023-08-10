@@ -210,7 +210,7 @@ function sendpage($page, $usexml) {
 }
 
 // close database connection
-mysql_close($dbConn);
+mysqli_close($dbConn);
 
 // save/send the XML document
 $xmlString = $xmlDoc->saveXML();

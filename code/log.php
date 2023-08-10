@@ -21,7 +21,7 @@ if ($user_id) {
 
 function enterRecord($ign, $event, $discription, $user_id, $token) {
 	$query = "INSERT INTO logs (user_id, ign, event, discription, timestamp, token) VALUES ('".$user_id."', '".dbEsc($ign)."', ".$event.", '".dbEsc($discription)."', NOW(), '".dbEsc($token)."')";
-	$result = mysql_query($query);
+	$result = mysqli_query($query);
 	if ($result) {
 		echo 'sucess';
 	} else {
@@ -31,13 +31,13 @@ function enterRecord($ign, $event, $discription, $user_id, $token) {
 
 function validateToken($token, $id) {
 	$query = "select user_id from tokens where token = '".dbEsc($token). "' AND computer_id = ".dbEsc($id). ";";
-	$result = mysql_query($query);
-	$row = mysql_fetch_array($result, MYSQL_ASSOC);
+	$result = mysqli_query($query);
+	$row = mysqli_fetch_array($result, MYSQL_ASSOC);
 	return $row['user_id'];
 }
 
 function dbEsc($theString) {
-	$theString = mysql_real_escape_string($theString);
+	$theString = mysqli_real_escape_string($theString);
 	return $theString;
 }
 
