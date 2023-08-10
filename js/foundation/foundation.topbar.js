@@ -370,15 +370,15 @@
       section.detach();
 
       self.S('.has-dropdown>a', section).each(function () {
-        var $dbConn = self.S(this),
-            $dropdown = $dbConn.siblings('.dropdown'),
-            url = $dbConn.attr('href'),
+        var $link = self.S(this),
+            $dropdown = $link.siblings('.dropdown'),
+            url = $link.attr('href'),
             $titleLi;
 
         if (!$dropdown.find('.title.back').length) {
 
           if (settings.mobile_show_parent_link == true && url) {
-            $titleLi = $('<li class="title back js-generated"><h5><a href="javascript:void(0)"></a></h5></li><li class="parent-link hide-for-medium-up"><a class="parent-link js-generated" href="' + url + '">' + $dbConn.html() +'</a></li>');
+            $titleLi = $('<li class="title back js-generated"><h5><a href="javascript:void(0)"></a></h5></li><li class="parent-link hide-for-medium-up"><a class="parent-link js-generated" href="' + url + '">' + $link.html() +'</a></li>');
           } else {
             $titleLi = $('<li class="title back js-generated"><h5><a href="javascript:void(0)"></a></h5>');
           }
@@ -387,7 +387,7 @@
           if (settings.custom_back_text == true) {
             $('h5>a', $titleLi).html(settings.back_text);
           } else {
-            $('h5>a', $titleLi).html('&laquo; ' + $dbConn.html());
+            $('h5>a', $titleLi).html('&laquo; ' + $link.html());
           }
           $dropdown.prepend($titleLi);
         }

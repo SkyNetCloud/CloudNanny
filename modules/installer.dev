@@ -2,12 +2,12 @@
 
 
 -----------------PASTEBINs--------------------------
-installer = "a3Rs0Tzg"
+installer = "Q8ah3K9S"
 
-player_module = "5ZWgeGMH"
-redstone_module = ""
-fluid_module = ""
-energy_module = ""
+player_module = "rWp0GXDW"
+redstone_module = "KkCYWkSU"
+fluid_module = "x7K3zUAC"
+energy_module = "RxLuZWHp"
 
 hash_api = "FLQ68J88"
 startup = "KnmEN37h"
@@ -36,7 +36,7 @@ function bars()
 	draw_line_term(1, 1, 51, colors.lime)
 	draw_line_term(1, 19, 51, colors.lime)
 	draw_text_term(12, 1, 'CraftNanny Module Installer', colors.gray, colors.lime)
-	draw_text_term(17, 19, 'skynetcloud.ca', colors.gray, colors.lime)
+	draw_text_term(17, 19, 'craftnanny.org', colors.gray, colors.lime)
 end
 
 -- saves current token variable to local text file
@@ -121,7 +121,7 @@ function hash(password)
 	shell.run("pastebin get "..hash_api.." sha1_api")
 	os.loadAPI('sha1_api')
 	response = http.post(
-                "http://skynetcloud.ca/code/salt.php",
+                "http://craftnanny.org/code/salt.php",
                 "user="..user)
 	salt = response.readAll()
 	hash = sha1_api.sha1(salt..password)
@@ -132,7 +132,7 @@ function login()
 	term.clear()
 	bars()
 	draw_text_term(1, 3, 'Register module to your CraftNanny account.', colors.lime, colors.black)
-	draw_text_term(1, 4, 'Create an account at skynetcloud.ca', colors.lightGray, colors.black)
+	draw_text_term(1, 4, 'Create an account at www.craftnanny.org', colors.lightGray, colors.black)
 	
 	draw_text_term(1, 6, 'Username: ', colors.lime, colors.black)
 	term.setTextColor(colors.white)
@@ -144,7 +144,7 @@ function login()
 	password = hash(pass)
 	
 	response = http.post(
-                "http://skynetcloud.ca/code/signin.php",
+                "http://craftnanny.org/code/signin.php",
                 "user="..user.."&pass="..password.."&id="..os.getComputerID().."&name="..module_name.."&module_type="..type)
 	token = response.readAll()
 
