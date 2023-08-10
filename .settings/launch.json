@@ -30,8 +30,8 @@
 		{
 			"name": "Attach",
 			"type": "node",
-			// TCP/IP address. Default is "localhost".
-			"address": "localhost",
+			// TCP/IP address. Default is "127.0.0.1".
+			"address": "127.0.0.1",
 			// Port to attach to.
 			"port": 5858,
 			"sourceMaps": false

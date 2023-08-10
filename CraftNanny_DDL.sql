@@ -2,7 +2,7 @@
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
+-- Host: 127.0.0.1
 -- Generation Time: Aug 12, 2015 at 09:24 PM
 -- Server version: 5.5.43-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.9

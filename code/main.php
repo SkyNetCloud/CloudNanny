@@ -6,7 +6,7 @@ ini_set('log_errors', 'Off');
 
 require_once('main_functions.php');
 
-$mysqli = mysqli_connect('localhost', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
+$mysqli = mysqli_connect('127.0.0.1', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
 
 
 
