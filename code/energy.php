@@ -26,7 +26,7 @@ $energy_type = htmlspecialchars($energy_type);
 $bat_name = htmlspecialchars($bat_name);
 $percent = htmlspecialchars($percent);
 
-$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '$tokenstring' AND computer_id = '$'");
+$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '$tokenstring' AND computer_id = '$'";
 $result = $mysqli->query($query);
 
 if ($result) {
