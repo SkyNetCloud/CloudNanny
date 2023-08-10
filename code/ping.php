@@ -20,7 +20,7 @@ function logPing($token, $id, $version) {
 }
 
 function dbEsc($theString) {
-	$theString = mysqli_real_escape_string($theString);
+	$theString = mysqli_real_escape_string($dbConn, $theString);
 	return $theString;
 }
 
