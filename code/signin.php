@@ -27,15 +27,15 @@ function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 	
 	// $salt = '';
 	// $query = "select salt from users where username = '".dbEsc($username). "';";	
-	// $result = mysqli_query($dbConn, $query);
-	// $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	// $result = $mysqli->query($query);
+	// $row = $result->fetch_array(MYSQLI_ASSOC);
 	// $salt = $row['salt'];
 	// $hash = sha1($salt.$password);
 	
 	$query2 = "select user_id from users where username = '" . dbEsc($username) . "' AND password = '" . dbEsc($password) . "';";
 	
-	$result2 = mysqli_query($dbConn, $query2);
-	$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
+	$result2 = $mysqli->query($query2);
+	$row2 = $result2->fetch_array(MYSQLI_ASSOC);
 
 	if ($row2['user_id'] != '') {
 		$token = createToken($dbConn, $row2['user_id'], $name, $id, $username, $module_type);
@@ -59,7 +59,7 @@ function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 function createToken($dbConn, $user_id, $name, $id, $username, $module_type) {
 	$token = rand().rand().rand().rand();
 	$query = "INSERT INTO tokens (token, user_id, computer_name, computer_id, module_type) VALUES ('".$token."', '".dbEsc($user_id)."', '".dbEsc($name)."', '".dbEsc($id)."', '".dbEsc($module_type)."')";
-	$result = mysqli_query($dbConn, $query);
+	$result = $mysqli->query($query);
 	if ($result) {
 		return $token;
 	} else {
@@ -69,23 +69,23 @@ function createToken($dbConn, $user_id, $name, $id, $username, $module_type) {
 
 function createRedstoneEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO redstone_controls (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
-	$result = mysqli_query($dbConn, $query);
+	$result = $mysqli->query($query);
 }
 
 function createTankEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO tanks (token) VALUES ('".dbEsc($token)."')";
-	$result = mysqli_query($dbConn, $query);
+	$result = $mysqli->query($query);
 }
 
 function createEnergyEntry($dbConn, $token, $id) {
 	$query = "INSERT INTO energy_storage (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
-	$result = mysqli_query($dbConn, $query);
+	$result = $mysqli->query($query);
 }
 
-// function dbEsc($theString) {
-// 	$theString = $dbConn -> real_escape_string($theString);
-// 	return $theString;
-// }
+function dbEsc($theString) {
+	$theString = $mysqli->real_escape_string($theString);
+	return $theString;
+}
 
 function dbError(&$xmlDoc, &$xmlNode, $theMessage) {
 	$errorNode = $xmlDoc->createElement('mysqlError', $theMessage);

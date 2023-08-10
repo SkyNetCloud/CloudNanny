@@ -2,7 +2,7 @@
 // disable error display
 error_reporting(E_ALL ^ E_DEPRECATED);
 error_reporting(E_ALL | E_NOTICE | E_WARNING);
-ini_set('log_errors', 'On'); 
+ini_set('log_errors', 'Off'); 
 
 require_once('main_functions.php');
 
@@ -210,7 +210,7 @@ function sendpage($page, $usexml) {
 }
 
 // close database connection
-mysql_close($dbConn);
+$dbConn->close();
 
 // save/send the XML document
 $xmlString = $xmlDoc->saveXML();
