@@ -22,9 +22,9 @@ $moduletypestring = $mysqli->real_escape_string($module_type);
 
 
 
-$name = htmlspecialchars($namestring);
-$username = htmlspecialchars($usernamestring);
-$module_type = htmlspecialchars($moduletypestring);
+$name = htmlspecialchars($name);
+$username = htmlspecialchars($username);
+$module_type = htmlspecialchars($module_type);
 
 signIn($username, $password, $name, $mysqli, $id, $module_type);
 
