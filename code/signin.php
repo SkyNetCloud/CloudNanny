@@ -16,26 +16,26 @@ $module_type = $_POST['module_type'];
 
 $usernamestring = $mysqli->real_escape_string($username);
 $passwordstring = $mysqli->real_escape_string($password);
-$name = $mysqli->real_escape_string($name);
+$namestring = $mysqli->real_escape_string($name);
 $idstring = $mysqli->real_escape_string($id);
 $moduletypestring = $mysqli->real_escape_string($module_type);
 
 
 
-$name = htmlspecialchars($name);
-$username = htmlspecialchars($username);
-$module_type = htmlspecialchars($module_type);
+$name = htmlspecialchars($namestring);
+$username = htmlspecialchars($usernamestring);
+$module_type = htmlspecialchars($moduletypestring);
 
 signIn($username, $password, $name, $mysqli, $id, $module_type);
 
 function signIn($username, $password, $name, $mysqli, $id, $module_type) {
 
 	// never trust data coming from lua
-	$username = htmlspecialchars($username);
-	$password = htmlspecialchars($password);
-	$name = htmlspecialchars($name);
-	$id = htmlspecialchars($id);
-	$module_type = htmlspecialchars($module_type);
+	$username = htmlspecialchars($usernamestring);
+	$password = htmlspecialchars($passwordstring);
+	$name = htmlspecialchars($namestring);
+	$id = htmlspecialchars($idstring);
+	$module_type = htmlspecialchars($moduletypestring);
 	
 	// hash is created in the lua now
 	
