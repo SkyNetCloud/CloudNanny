@@ -14,11 +14,11 @@ $energy_type = $_POST['energy_type'];
 $percent = $_POST['percent'];
 
 
-$tokenstring = $mysqli->real_escape_string($this->$token);
-$idstring = $mysqli->real_escape_string($this->$id);
-$batnamestring = $mysqli->real_escape_string($this->$bat_name);
-$energytypestring = $mysqli->real_escape_string($this->$energy_type);
-$percentstring = $mysqli->real_escape_string($this->$percent);
+$tokenstring = $mysqli->real_escape_string($token);
+$idstring = $mysqli->real_escape_string($id);
+$batnamestring = $mysqli->real_escape_string($bat_name);
+$energytypestring = $mysqli->real_escape_string($energy_type);
+$percentstring = $mysqli->real_escape_string($percent);
 
 
 
