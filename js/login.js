@@ -36,7 +36,7 @@ function loginUser() {
 
 function signIn(token) {
 	document.cookie = 'logger_token' + "=" + token + "; path=/";
-	window.location.assign("http://www.craftnanny.org/home.php")
+	window.location.assign("http://skynetcloud.ca/home.php")
 }
 
 $(document).ready(function() {

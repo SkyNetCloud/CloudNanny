@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CraftNanny</title>
+    <title>CloudNanny</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
     <script>
@@ -23,7 +23,7 @@
         <div class="large-12 columns top_bar">
           <div class="row">
            <span style="font-weight:bold;font-size:36px;color:#1b9bff">
-             CraftNanny
+             CloudNanny
            </span>
             <span style="font-weight:bold;font-size:16px;color:#ffffff">
              Monitor and Control Minecraft Online through ComputerCraft
@@ -57,7 +57,7 @@
                 <li><a href="#redstone">Redstone Controls</a></li>
                 <li>Rednet (coming soon)</li>
                 <li>BigReactor Control (coming soon)</li>
-                <li><a href="https://github.com/jaranvil/CraftNanny/issues">Suggestions?</a></li>
+                <li><a href="https://github.com/SkyNetCloud/CloudNanny/issues">Suggestions?</a></li>
               </ul>
           </div>
         </div>
@@ -206,9 +206,9 @@
               <img src="img/skin.PNG" style="height:200px;">
             </div>
             <div class="large-4 columns" style="border-right:2px solid;height:200px">
-              <p><h2 style="font-weight:bold;color:#cccccc;">CraftNanny.org</h2>
+              <p><h2 style="font-weight:bold;color:#cccccc;">CloudNanny.org</h2>
               <p style="color:#cccccc;font-size:18px;">Contribute to this open-source project on GitHub!</p>
-              <a href="https://github.com/jaranvil/CraftNanny"><img src="img/git.png" style="width:100px;"></a>
+              <a href="https://github.com/SkyNetCloud/CloudNanny"><img src="img/git.png" style="width:100px;"></a>
             </div>
             <div class="large-6 columns">
 
@@ -225,7 +225,7 @@
                 <li><a href="home.php" style="color:#cccccc">My Dashboard</a>  </li>
                 <li><a href="setup.php" style="color:#cccccc">Setup Instructions</a>  </li>
                 <li><a href="modules.php" style="color:#cccccc">Modules</a> </li>
-                <li><a href="https://github.com/jaranvil/CraftNanny/issues" style="color:#cccccc">Report Issues </a></li>
+                <li><a href="https://github.com/SkyNetCloud/CloudNanny/issues" style="color:#cccccc">Report Issues </a></li>
               </ul>
             </div>
           </div>

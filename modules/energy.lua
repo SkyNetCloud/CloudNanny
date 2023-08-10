@@ -2,7 +2,7 @@
 --      Power module for caftNanny
 --      by demethan
 --      www.breakfastcraft.com
---		www.craftnanny.org
+--		skynetcloud.ca
 --  	2015-08-11: added storage block detection
 --					added visual storage bar
 --					fixed modem support
@@ -37,8 +37,8 @@ end
 function bars()
 	draw_line_term(1, 1, 51, colors.lime)
 	draw_line_term(1, 19, 51, colors.lime)
-	draw_text_term(15, 1, 'CraftNanny Energy Module', colors.gray, colors.lime)
-	draw_text_term(10, 19, 'www.craftnanny.org', colors.gray, colors.lime)
+	draw_text_term(15, 1, 'CloudNanny Energy Module', colors.gray, colors.lime)
+	draw_text_term(10, 19, 'skynetcloud.ca', colors.gray, colors.lime)
 end
 
 function terminal_screen()
@@ -76,7 +76,7 @@ end
 
 
 function phone_home(bat_name, energy_type, percent)
-    response = http.post("http://craftnanny.org/code/energy.php",
+    response = http.post("http://skynetcloud.ca/code/energy.php",
         "token="..token.."&id="..os.getComputerID().."&bat_name="..bat_name.."&energy_type="..energy_type.."&percent="..percent)
     return_string = response.readAll()
 

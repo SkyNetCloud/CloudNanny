@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CraftNanny</title>
+    <title>CloudNanny</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
     <script>
@@ -22,7 +22,7 @@
     <div class="large-12 columns top_bar">
           <div class="row">
            <span style="font-weight:bold;font-size:36px;color:#1b9bff">
-             CraftNanny
+             CloudNanny
            </span>
             <span style="font-weight:bold;font-size:16px;color:#ffffff">
              Monitor and Control Minecraft Online through ComputerCraft
@@ -57,15 +57,12 @@
 
         <div class="large-9 columns">
           <p>
-          <h4>For now, please contact us through <a href="https://github.com/jaranvil/CraftNanny/issues">our GitHub</a> or contact <a href="http://www.reddit.com/u/jaranvil">u/jaranvil</a><h4>
+          <h4>For now, please contact us through <a href="https://github.com/SkyNetCloud/CloudNanny/issues">our GitHub</a><h4>
         </div>
  
 
 
-       
-        
-
-     
+  
 
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
