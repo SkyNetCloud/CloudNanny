@@ -82,7 +82,7 @@ function createToken($mysqli, $user_id, $name, $id, $username, $module_type) {
 }
 
 function createRedstoneEntry($mysqli, $token, $id) {
-	$query = "INSERT INTO redstone_controls (token, computer_id) VALUES ('$token', "$idstring")";
+	$query = "INSERT INTO redstone_controls (token, computer_id) VALUES ('$token', '$idstring')";
 	$result = $mysqli->query($query);
 }
 
