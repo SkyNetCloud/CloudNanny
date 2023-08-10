@@ -112,7 +112,7 @@ function checkEvents($token) {
 	}
 }
 
-function dbEsc($theString) {
+function dbEsc($dbConn, $theString) {
 	$theString = mysqli_real_escape_string($dbConn, $theString);
 	return $theString;
 }
