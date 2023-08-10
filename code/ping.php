@@ -2,11 +2,7 @@
 
 $version = 2;
 
-$mysqli = mysqli_connect('127.0.0.1', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
-session_start();
-
-
-//require_once('connection.php');
+require_once('connection.php');
 
 $token = $_POST['token'];
 $id = $_POST['id'];
@@ -15,7 +11,7 @@ logPing($token, $id, $version);
 
 function logPing($token, $id, $version) {
 	$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".dbEsc($token)."' AND computer_id = ".dbEsc($id);
-	$result = $mysqli->query($query);
+	$result = mysql_query($query);
 	if ($result) {
 		echo $version;
 	} else {
@@ -24,7 +20,7 @@ function logPing($token, $id, $version) {
 }
 
 function dbEsc($theString) {
-	$theString = $mysqli->real_escape_string($theString);
+	$theString = mysql_real_escape_string($theString);
 	return $theString;
 }
 

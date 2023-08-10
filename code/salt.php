@@ -2,21 +2,17 @@
 
 $username = $_POST['user'];
 
-$mysqli = mysqli_connect('127.0.0.1', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
-session_start();
-
-
 $username = htmlspecialchars($username);
 
-//require_once('connection.php');
+require_once('connection.php');
 $salt = '';
 $query = "select salt from users where username = '".dbEsc($username). "';";	
-$result = $mysqli->query($query);
+$result = mysql_query($query);
 
 
 
 if ($result) {
-	$row = $result->fetch_array(MYSQLI_ASSOC);
+	$row = mysql_fetch_array($result, MYSQL_ASSOC);
 	$salt = $row['salt'];
 	echo $salt;
 } else {
@@ -24,7 +20,7 @@ if ($result) {
 }
 
 function dbEsc($theString) {
-	$theString = $mysqli->real_escape_string($theString);
+	$theString = mysql_real_escape_string($theString);
 	return $theString;
 }
 

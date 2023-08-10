@@ -2,12 +2,7 @@
 
 $version = 2;
 
-//require_once('connection.php');
-
-$mysqli = mysqli_connect('127.0.0.1', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
-session_start();
-
-
+require_once('connection.php');
 
 $token = $_POST['token'];
 $id = $_POST['id'];
@@ -26,7 +21,7 @@ $left_input = htmlspecialchars($left_input);
 $right_input = htmlspecialchars($right_input);
 
 $query2 = "UPDATE redstone_controls SET top_input = ".dbEsc($top_input).",  bottom_input = ".dbEsc($bottom_input).",  front_input = ".dbEsc($front_input).",  back_input = ".dbEsc($back_input).",  left_input = ".dbEsc($left_input).",  right_input = ".dbEsc($right_input)." WHERE token = '".dbEsc($token)."'";
-$result = $mysqli->query($query2);
+$result = mysql_query($query2);
 
 checkEvents($token);
 getRsOutputs($token, $id, $version);
@@ -34,12 +29,12 @@ getRsOutputs($token, $id, $version);
 
 function getRsOutputs($token, $id, $version) {
 	$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".dbEsc($token)."' AND computer_id = ".dbEsc($id);
-	$result = $mysqli->query($query);
+	$result = mysql_query($query);
 	
 	if ($result) {
 		$query2 = "SELECT * from redstone_controls WHERE token = '".dbEsc($token)."'";
-		$result2 = $mysqli->query($query2);
-		$row2 = $result2->fetch_array(MYSQLI_ASSOC);
+		$result2 = mysql_query($query2);
+		$row2 = mysql_fetch_array($result2, MYSQL_ASSOC);
 	
 		$returnString = $version.", ".$row2['top'].", ".$row2['bottom'].", ".$row2['back'].", ".$row2['front'].", ".$row2['left_side'].", ".$row2['right_side'];
 		echo $returnString;
@@ -50,12 +45,12 @@ function getRsOutputs($token, $id, $version) {
 
 function checkEvents($token) {
 	$query = "SELECT * from redstone_events WHERE redstone_token = '".dbEsc($token)."'";
-	$result = $mysqli->query($query);
+	$result = mysql_query($query);
 	
-	while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+	while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 		$query2 = "SELECT * FROM tanks WHERE token = '".$row['storage_token']."'";
-		$result2 = $mysqli->query($query2);
-		$row2 = $result2->fetch_array(MYSQLI_ASSOC);
+		$result2 = mysql_query($query2);
+		$row2 = mysql_fetch_array($result2, MYSQL_ASSOC);
 		
 		$side = '';
 		if ($row['side'] == 'top_side') {
@@ -74,19 +69,19 @@ function checkEvents($token) {
 		if ($row['event_type'] == '1') {
 			if (intval($row2['percent']) > intval($row['trigger_value'])) {
 				$query3 = "UPDATE redstone_controls SET ".$side." = ".$row['output'];
-				$result3 = $mysqli->query($query3);
+				$result3 = mysql_query($query3);
 			}
 		}
 		if ($row['event_type'] == '2') {
 			if (intval($row2['percent']) < intval($row['trigger_value'])) {
 				$query3 = "UPDATE redstone_controls SET ".$side." = ".$row['output'];
-				$result3 = $mysqli->query($query3);
+				$result3 = mysql_query($query3);
 			}
 		}
 		
 		$query2 = "SELECT * FROM energy_storage WHERE token = '".$row['storage_token']."'";
-		$result2 = $mysqli->query($query2);
-		$row2 = $result2->fetch_array(MYSQLI_ASSOC);
+		$result2 = mysql_query($query2);
+		$row2 = mysql_fetch_array($result2, MYSQL_ASSOC);
 		
 		$side = '';
 		if ($row['side'] == 'top_side') {
@@ -105,20 +100,20 @@ function checkEvents($token) {
 		if ($row['event_type'] == '1') {
 			if (intval($row2['percent']) > intval($row['trigger_value'])) {
 				$query3 = "UPDATE redstone_controls SET ".$side." = ".$row['output'];
-				$result3 = $mysqli->query($query3);
+				$result3 = mysql_query($query3);
 			}
 		}
 		if ($row['event_type'] == '2') {
 			if (intval($row2['percent']) < intval($row['trigger_value'])) {
 				$query3 = "UPDATE redstone_controls SET ".$side." = ".$row['output'];
-				$result3 = $mysqli->query($query3);
+				$result3 = mysql_query($query3);
 			}
 		}
 	}
 }
 
 function dbEsc($theString) {
-	$theString = $mysqli->real_escape_string($theString);
+	$theString = mysql_real_escape_string($theString);
 	return $theString;
 }
 

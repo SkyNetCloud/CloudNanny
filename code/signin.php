@@ -2,66 +2,52 @@
 
 require_once('connection.php');
 
-$mysqli = mysqli_connect('127.0.0.1', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny') or die(print_r(mysqli_error($mysqli)));
-session_start();
-
-
-
 $username = $_POST['user'];
 $password = $_POST['pass'];
 $name = $_POST['name'];
 $id = $_POST['id'];
 $module_type = $_POST['module_type'];
 
-
-$usernamestring = $mysqli->real_escape_string($username);
-$passwordstring = $mysqli->real_escape_string($password);
-$namestring = $mysqli->real_escape_string($name);
-$idstring = $mysqli->real_escape_string($id);
-$moduletypestring = $mysqli->real_escape_string($module_type);
-
-
-
 $name = htmlspecialchars($name);
 $username = htmlspecialchars($username);
 $module_type = htmlspecialchars($module_type);
 
-signIn($username, $password, $name, $mysqli, $id, $module_type);
+signIn($username, $password, $name, $dbConn, $id, $module_type);
 
-function signIn($username, $password, $name, $mysqli, $id, $module_type) {
+function signIn($username, $password, $name, $dbConn, $id, $module_type) {
 
 	// never trust data coming from lua
-	$username = htmlspecialchars($usernamestring);
-	$password = htmlspecialchars($passwordstring);
-	$name = htmlspecialchars($namestring);
-	$id = htmlspecialchars($idstring);
-	$module_type = htmlspecialchars($moduletypestring);
+	$username = htmlspecialchars($username);
+	$password = htmlspecialchars($password);
+	$name = htmlspecialchars($name);
+	$id = htmlspecialchars($id);
+	$module_type = htmlspecialchars($module_type);
 	
 	// hash is created in the lua now
 	
 	// $salt = '';
 	// $query = "select salt from users where username = '".dbEsc($username). "';";	
-	// $result = $mysqli->query($query);
-	// $row = $result->fetch_array(MYSQLI_ASSOC);
+	// $result = mysql_query($query);
+	// $row = mysql_fetch_array($result, MYSQL_ASSOC);
 	// $salt = $row['salt'];
 	// $hash = sha1($salt.$password);
 	
-	$query2 = "SELECT user_id FROM users WHERE username = '$usernamestring' AND password = '$passwordstring'";
+	$query2 = "select user_id from users where username = '" . dbEsc($username) . "' AND password = '" . dbEsc($password) . "';";
 	
-	$result2 = $mysqli->query($query2);
-	$row2 = $result2->fetch_array(MYSQLI_ASSOC);
+	$result2 = mysql_query($query2);
+	$row2 = mysql_fetch_array($result2, MYSQL_ASSOC);
 
 	if ($row2['user_id'] != '') {
-		$token = createToken($mysqli, $row2['user_id'], $name, $id, $username, $module_type);
+		$token = createToken($dbConn, $row2['user_id'], $name, $id, $username, $module_type);
 		
 		if ($module_type == '4') {
-			createRedstoneEntry($mysqli, $token, $id);
+			createRedstoneEntry($dbConn, $token, $id);
 		}
 		if ($module_type == '3') {
-			createTankEntry($mysqli, $token, $id);
+			createTankEntry($dbConn, $token, $id);
 		}
 		if ($module_type == '2') {
-			createEnergyEntry($mysqli, $token, $id);
+			createEnergyEntry($dbConn, $token, $id);
 		}
 		
 		echo $token;
@@ -70,10 +56,10 @@ function signIn($username, $password, $name, $mysqli, $id, $module_type) {
 	}
 }
 
-function createToken($mysqli, $user_id, $name, $id, $username, $module_type) {
+function createToken($dbConn, $user_id, $name, $id, $username, $module_type) {
 	$token = rand().rand().rand().rand();
-	$query = "INSERT INTO tokens (token, user_id, computer_name, computer_id, module_type) VALUES ('$token', '$user_id', '$usernamestring', '$idstring', '$moduletype')";
-	$result = $mysqli->query($query);
+	$query = "INSERT INTO tokens (token, user_id, computer_name, computer_id, module_type) VALUES ('".$token."', '".dbEsc($user_id)."', '".dbEsc($name)."', '".dbEsc($id)."', '".dbEsc($module_type)."')";
+	$result = mysql_query($query);
 	if ($result) {
 		return $token;
 	} else {
@@ -81,19 +67,24 @@ function createToken($mysqli, $user_id, $name, $id, $username, $module_type) {
 	}
 }
 
-function createRedstoneEntry($mysqli, $token, $id) {
-	$query = "INSERT INTO redstone_controls (token, computer_id) VALUES ('$token', '$idstring')";
-	$result = $mysqli->query($query);
+function createRedstoneEntry($dbConn, $token, $id) {
+	$query = "INSERT INTO redstone_controls (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
+	$result = mysql_query($query);
 }
 
-function createTankEntry($mysqli, $token, $id) {
-	$query = "INSERT INTO tanks (token) VALUES ('$token')";
-	$result = $mysqli->query($query);
+function createTankEntry($dbConn, $token, $id) {
+	$query = "INSERT INTO tanks (token) VALUES ('".dbEsc($token)."')";
+	$result = mysql_query($query);
 }
 
-function createEnergyEntry($mysqli, $token, $id) {
-	$query = "INSERT INTO energy_storage (token, computer_id) VALUES ('$token', '$idstring')";
-	$result = $mysqli->query($query);
+function createEnergyEntry($dbConn, $token, $id) {
+	$query = "INSERT INTO energy_storage (token, computer_id) VALUES ('".dbEsc($token)."', ".dbEsc($id).")";
+	$result = mysql_query($query);
+}
+
+function dbEsc($theString) {
+	$theString = mysql_real_escape_string($theString);
+	return $theString;
 }
 
 function dbError(&$xmlDoc, &$xmlNode, $theMessage) {
