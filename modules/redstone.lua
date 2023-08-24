@@ -1,9 +1,9 @@
--- CraftNanny
+-- CloudNanny
 -- Redstone module
 local version = 2
 
 -- pastebin for installer
-local installer = "Q8ah3K9S"
+local installer = "a3Rs0Tzg"
 local time = 0
 local token = '0'
 -- this scanners name
@@ -44,8 +44,8 @@ end
 function bars()
 	draw_line_term(1, 1, 51, colors.lime)
 	draw_line_term(1, 19, 51, colors.lime)
-	draw_text_term(15, 1, 'CraftNanny Redstone Module', colors.gray, colors.lime)
-	draw_text_term(10, 19, 'skynetcloud.ca', colors.gray, colors.lime)
+	draw_text_term(15, 1, 'CloudNanny Redstone Module', colors.gray, colors.lime)
+	draw_text_term(10, 19, 'cloudnanny.skynetcloud.ca', colors.gray, colors.lime)
 end
 
 function terminal_screen()
@@ -105,9 +105,7 @@ end
 
 function phone_home()
 	getInputs()
-
-    response = http.post("https://skynetcloud.ca/code/redstone.php",
-        "token="..token.."&id="..os.getComputerID().."&top_input="..top_input.."&bottom_input="..bottom_input.."&front_input="..front_input.."&back_input="..back_input.."&left_input="..left_input.."&right_input="..right_input)		
+    response = http.post("https://cloudnanny.skynetcloud.ca/code/redstone.php", "token="..token.."&id="..os.getComputerID().."&top_input="..top_input.."&bottom_input="..bottom_input.."&front_input="..front_input.."&back_input="..back_input.."&left_input="..left_input.."&right_input="..right_input)		
 	return_string = response.readAll()
 	
 	result_array = string.split(return_string,",")

@@ -9,7 +9,7 @@
 local containers={}
 local version = 1
 
-local installer = "Q8ah3K9S"
+local installer = "a3Rs0Tzg"
 local token = '0'
 local module_name = ''
 local username = ''
@@ -33,8 +33,8 @@ end
 function bars()
 	draw_line_term(1, 1, 51, colors.lime)
 	draw_line_term(1, 19, 51, colors.lime)
-	draw_text_term(15, 1, 'CraftNanny Fluid Module', colors.gray, colors.lime)
-	draw_text_term(10, 19, 'skynetcloud.ca', colors.gray, colors.lime)
+	draw_text_term(15, 1, 'CloudNanny Fluid Module', colors.gray, colors.lime)
+	draw_text_term(10, 19, 'cloudnanny.skynetcloud.ca', colors.gray, colors.lime)
 end
 
 function terminal_screen()
@@ -75,7 +75,7 @@ end
 
 
 function phone_home(tank_name, fluid_type, percent)
-    response = http.post("https://skynetcloud.ca/code/fluid.php",
+    response = http.post("https://cloudnanny.skynetcloud.ca/code/fluid.php",
         "token="..token.."&id="..os.getComputerID().."&tank_name="..tank_name.."&fluid_type="..fluid_type.."&percent="..percent)		
 	return_string = response.readAll()
 	

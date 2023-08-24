@@ -3,7 +3,7 @@
 --allowedPlayerArray={["Topher"]=true,["nunley21"]=true,["Demethan"]=true,["waerloga"]=true}
 
 -- pastebin for installer
-local installer = "Q8ah3K9S"
+local installer = "a3Rs0Tzg"
 -- players ignored by senors
 local allowedPlayerArray={}
 -- inventory arrays to compare
@@ -44,7 +44,7 @@ function bars()
 	draw_line_term(1, 1, 51, colors.lime)
 	draw_line_term(1, 19, 51, colors.lime)
 	draw_text_term(20, 1, 'Base Scanner', colors.gray, colors.lime)
-	draw_text_term(13, 19, 'skynetcloud.ca', colors.gray, colors.lime)
+	draw_text_term(13, 19, 'cloudnanny.skynetcloud.ca', colors.gray, colors.lime)
 end
 
 function scanner_screen()
@@ -92,7 +92,7 @@ end
 -- tells the server that the scanner is online
 -- checks version and automtically updates
 function phone_home()
-    response = http.post("https://skynetcloud.ca/code/ping.php",
+    response = http.post("https://cloudnanny.skynetcloud.ca/code/ping.php",
         "token="..token.."&id="..os.getComputerID())
 	current_version = response.readAll()
 
@@ -192,7 +192,7 @@ end
 	
 -- e.g. post('tom', 2, ' has left sensor range')
 function post(ign, event, discription)  
-    http.post("https://skynetcloud.ca/code/log.php",
+    http.post("https://cloudnanny.skynetcloud.ca/code/log.php",
         "token="..token.."&ign="..ign.."&id="..os.getComputerID().."&event="..event.."&discription="..discription)
 end
 

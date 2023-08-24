@@ -1,2 +1,2 @@
 # CloudNanny
-skynetcloud.ca Control and monitor minecraft through ComputerCraft
+cloudnanny.skynetcloud.ca Control and monitor minecraft through ComputerCraft
