@@ -20,7 +20,8 @@ $back_input = htmlspecialchars($back_input);
 $left_input = htmlspecialchars($left_input);
 $right_input = htmlspecialchars($right_input);
 
-$query2 = "UPDATE redstone_controls SET top_input = ".$top_input.",  bottom_input = ".$bottom_input.",  front_input = ".$front_input.",  back_input = ".$back_input.",  left_input = ".$left_input.",  right_input = ".$right_input." WHERE token = '".$token."'";
+$query2 = "UPDATE redstone_controls SET top_input = ".$top_input.", bottom_input = ".$bottom_input.", front_input = ".$front_input.", back_input = ".$back_input.", left_input = ".$left_input.", right_input = ".$right_input."WHEREtoken = ".$token."";
+
 $result = mysqli_query($mysqli,$query2);
 
 checkEvents($mysqli,$token);
