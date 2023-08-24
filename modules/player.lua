@@ -44,7 +44,7 @@ function bars()
 	draw_line_term(1, 1, 51, colors.lime)
 	draw_line_term(1, 19, 51, colors.lime)
 	draw_text_term(20, 1, 'Base Scanner', colors.gray, colors.lime)
-	draw_text_term(13, 19, 'craftnanny.org', colors.gray, colors.lime)
+	draw_text_term(13, 19, 'skynetcloud.ca', colors.gray, colors.lime)
 end
 
 function scanner_screen()
@@ -127,7 +127,7 @@ function record()
 						itemString[ign]=""
 						snapShot[ign]= invArray
 						--print("Initial snapshot")
-						post(ign,1," has entered sensor range")
+						post(ign,1," has entered sensor range")+
 						flag[ign]=true -- set player flag for later processing
 					else
 						snapShot2[ign]= invArray
@@ -249,7 +249,8 @@ function start_recording()
 end
 
 function start()
-	s=peripheral.wrap("top")
+	s=peripheral.find("playerDetector")
+	i=peripheral.find("inventoryManager")
 	heart=0
 	term.clear()
 	term.setCursorPos(1,1)
