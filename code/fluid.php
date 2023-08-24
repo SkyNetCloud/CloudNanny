@@ -14,7 +14,7 @@ $fluid_type = htmlspecialchars($fluid_type);
 $tank_name = htmlspecialchars($tank_name);
 $percent = htmlspecialchars($percent);
 
-$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".$token."' AND computer_id = ".$id;
+$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".$token."' AND computer_id = '".$id."'";
 $result = mysqli_query($mysqli,$query);
 
 if ($result) {
