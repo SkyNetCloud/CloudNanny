@@ -1,27 +1,23 @@
 <?php
 
-$username = $_POST['user'];
+$username = mysqli_real_escape_string($mysqli,$_POST['user']);
 
 $username = htmlspecialchars($username);
 
 require_once('connection.php');
+
 $salt = '';
-$query = "select salt from users where username = '".dbEsc($username). "';";	
+$query = "select salt from users where username = '".$username. "';";	
 $result = mysqli_query($mysqli,$query);
 
 
 
 if ($result) {
-	$row = mysql_fetch_array($result, MYSQL_ASSOC);
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	$salt = $row['salt'];
 	echo $salt;
 } else {
 	echo 'error';
-}
-
-function dbEsc($theString) {
-	$theString = mysql_real_escape_string($theString);
-	return $theString;
 }
 
 function dbError(&$xmlDoc, &$xmlNode, $theMessage) {

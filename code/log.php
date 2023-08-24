@@ -2,25 +2,25 @@
 
 require_once('connection.php');
 
-$token = $_POST['token'];
-$ign = $_POST['ign'];
+$token = mysqli_real_escape_string($mysqli,$_POST['token']);
+$ign = mysqli_real_escape_string($mysqli,$_POST['ign']);
 $event = $_POST['event'];
-$discription = $_POST['description'];
+$discription = mysqli_real_escape_string($mysqli,$_POST['description']);
 $id = $_POST['id'];
 
-$user_id = validateToken($token, $id);
+$user_id = validateToken($mysqli,$token, $id);
 $event = htmlspecialchars($event);
 $ign = htmlspecialchars($ign);
 $discription = htmlspecialchars($discription);
 
 if ($user_id) {
-	enterRecord($ign, $event, $discription, $user_id, $token);
+	enterRecord($mysqli,$ign, $event, $discription, $user_id, $token);
 } else {
 	echo 'error';
 }
 
-function enterRecord($ign, $event, $discription, $user_id, $token) {
-	$query = "INSERT INTO logs (user_id, ign, event, discription, timestamp, token) VALUES ('".$user_id."', '".dbEsc($ign)."', ".$event.", '".dbEsc($discription)."', NOW(), '".dbEsc($token)."')";
+function enterRecord($mysqli,$ign, $event, $discription, $user_id, $token) {
+	$query = "INSERT INTO logs (user_id, ign, event, discription, timestamp, token) VALUES ('".$user_id."', '".$ign."', ".$event.", '".$discription."', NOW(), '".$token."')";
 	$result = mysqli_query($mysqli,$query);
 	if ($result) {
 		echo 'sucess';
@@ -29,17 +29,13 @@ function enterRecord($ign, $event, $discription, $user_id, $token) {
 	}
 }
 
-function validateToken($token, $id) {
-	$query = "select user_id from tokens where token = '".dbEsc($token). "' AND computer_id = ".dbEsc($id). ";";
+function validateToken($mysqli,$token, $id) {
+	$query = "select user_id from tokens where token = '".$token. "' AND computer_id = ".$id. ";";
 	$result = mysqli_query($mysqli,$query);
-	$row = mysql_fetch_array($result, MYSQL_ASSOC);
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	return $row['user_id'];
 }
 
-function dbEsc($theString) {
-	$theString = mysql_real_escape_string($theString);
-	return $theString;
-}
 
 function dbError(&$xmlDoc, &$xmlNode, $theMessage) {
 	$errorNode = $xmlDoc->createElement('mysqlError', $theMessage);

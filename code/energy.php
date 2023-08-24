@@ -1,8 +1,10 @@
 <?php
+global $mysqli;
 
 $version = 1;
 
 require_once('connection.php');
+
 
 $token = mysqli_real_escape_string($mysqli,$_POST['token']);
 $id = mysqli_real_escape_string($mysqli,$_POST['id']);
