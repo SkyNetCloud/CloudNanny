@@ -7,7 +7,7 @@ $username = htmlspecialchars($username);
 require_once('connection.php');
 $salt = '';
 $query = "select salt from users where username = '".dbEsc($username). "';";	
-$result = mysql_query($query);
+$result = mysqli_query($mysqli,$query);
 
 
 

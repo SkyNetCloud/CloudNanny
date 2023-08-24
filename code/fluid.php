@@ -15,11 +15,11 @@ $tank_name = htmlspecialchars($tank_name);
 $percent = htmlspecialchars($percent);
 
 $query = "UPDATE tokens SET last_seen = NOW() WHERE token = '".dbEsc($token)."' AND computer_id = ".dbEsc($id);
-$result = mysql_query($query);
+$result = mysqli_query($mysqli,$query);
 
 if ($result) {
-	$query2 = "UPDATE tanks SET tank_name = '".dbEsc($tank_name)."', fluid_type = '".dbEsc($fluid_type)."', percent = '".dbEsc($percent)."' WHERE token = '".dbEsc($token)."'";
-	$result2 = mysql_query($query2);
+	$query2 = "UPDATE tanks SET tank_name = '".$tank_name."', fluid_type = '".dbEsc($fluid_type)."', percent = '".dbEsc($percent)."' WHERE token = '".dbEsc($token)."'";
+	$result2 = mysqli_query($mysqli,$query2);
 
 	echo $version;
 } else {
@@ -27,9 +27,5 @@ if ($result) {
 }
 
 
-function dbEsc($theString) {
-	$theString = mysql_real_escape_string($theString);
-	return $theString;
-}
 
 ?>
