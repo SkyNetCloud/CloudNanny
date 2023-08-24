@@ -163,7 +163,7 @@ function hash(password)
 	getPaste(hash_api, "sha1_api")
 	os.loadAPI('sha1_api')
 	response = http.post(
-        "http://craftnanny.org/code/salt.php",
+        "https://skynetcloud.ca/code/salt.php",
         "user="..user)
 	salt = response.readAll()
 	hash = sha1_api.sha1(salt..password)
@@ -186,7 +186,7 @@ function login()
 	password = hash(pass)
 	
 	response = http.post(
-        "http://craftnanny.org/code/signin.php",
+        "https://skynetcloud.ca/code/signin.php",
         "user="..user.."&pass="..password.."&id="..os.getComputerID().."&name="..module_name.."&module_type="..type)
 	token = response.readAll()
 

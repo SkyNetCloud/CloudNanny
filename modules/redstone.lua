@@ -106,7 +106,7 @@ end
 function phone_home()
 	getInputs()
 
-    response = http.post("http://craftnanny.org/code/redstone.php",
+    response = http.post("https://skynetcloud.ca/code/redstone.php",
         "token="..token.."&id="..os.getComputerID().."&top_input="..top_input.."&bottom_input="..bottom_input.."&front_input="..front_input.."&back_input="..back_input.."&left_input="..left_input.."&right_input="..right_input)		
 	return_string = response.readAll()
 	

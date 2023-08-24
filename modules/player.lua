@@ -92,7 +92,7 @@ end
 -- tells the server that the scanner is online
 -- checks version and automtically updates
 function phone_home()
-    response = http.post("http://craftnanny.org/code/ping.php",
+    response = http.post("https://skynetcloud.ca/code/ping.php",
         "token="..token.."&id="..os.getComputerID())
 	current_version = response.readAll()
 
@@ -192,7 +192,7 @@ end
 	
 -- e.g. post('tom', 2, ' has left sensor range')
 function post(ign, event, discription)  
-    http.post("http://craftnanny.org/code/log.php",
+    http.post("https://skynetcloud.ca/code/log.php",
         "token="..token.."&ign="..ign.."&id="..os.getComputerID().."&event="..event.."&discription="..discription)
 end
 
