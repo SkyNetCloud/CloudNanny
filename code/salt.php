@@ -1,14 +1,14 @@
 <?php
 global $mysqli;
 
-$username = $_POST['user'];
+$username = mysqli_real_escape_string($mysql,$_POST['user']);
 
 $username = htmlspecialchars($username);
 
 require_once('connection.php');
 
 $salt = '';
-$query = "SELECT salt FROM users WHERE username = '".$username. "'";	
+$query = "SELECT salt FROM users WHERE username = '".$username."'";	
 $result = mysqli_query($mysqli,$query);
 
 

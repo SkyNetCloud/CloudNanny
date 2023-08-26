@@ -165,7 +165,7 @@ function hash(password)
 	response = http.post(
         "https://cloudnanny.skynetcloud.ca/code/salt.php",
         "user="..user)
-	salt = response.readAll()
+	salt = response.read()
 	hash = sha1_api.sha1(salt..password)
 	return hash
 end
