@@ -67,14 +67,14 @@ function signIn($mysqli, $xmlDoc, $username, $password) {
 	$password = htmlspecialchars($password);
 
 	$salt = '';
-	$query = "SELECT salt FROM users WHERE username = '".$username."'";
+	$query = "SELECT salt FROM users WHERE username = '".$username. "';";
 	$result = mysqli_query($mysqli,$query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	$salt = $row['salt'];
 
 	$hash = sha1($salt.$password);
 
-	$query2 = "select user_id from users where username = '" . $username . "' AND password = '".$hash."'";
+	$query2 = "SELECT user_id FROM users WHERE username = '" . $username . "' AND password = '" . $hash . "';";
 
 	$result2 = mysqli_query($mysqli,$query2);
 
@@ -107,7 +107,7 @@ function addNewUser($mysqli, $xmlDoc, $username, $password, $email) {
 	$user_id = rand().rand().rand().rand();
 
 	$query = "INSERT INTO users (user_id, username, password, salt, email) " .
-				"VALUES ('".$user_id."', '" . $username ."', '" . $hash . "', '" . $salt . "', '".$email."'";
+				"VALUES ('".$user_id."', '" . $username ."', '" . $hash . "', '" . $salt . "', '".$email."')";
 
 	$result = mysqli_query($mysqli,$query);
 
