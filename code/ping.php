@@ -7,12 +7,13 @@ require_once('connection.php');
 $token = mysqli_real_escape_string($mysqli,$_POST['token']);
 $id = mysqli_real_escape_string($mysqli,$_POST['id']);
 
-logPing($mysqli,$token, $id, $version);
+logPing($token, $id, $version);
 
 
-function logPing($mysqli,$token, $id, $version) {
-	$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '". $token ."' AND computer_id = ".$id ;
-	$result = $mysqli->query($query);
+function logPing($token, $id, $version) {
+	global $mysqli;
+	$query = "UPDATE tokens SET last_seen = NOW() WHERE token = '". $token ."' AND computer_id = '".$id."'";
+	$result = mysqli_query($mysqli,$query);
 	if ($result) {
 		echo $version;
 	} else {
