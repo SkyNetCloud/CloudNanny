@@ -32,7 +32,7 @@ function signIn($username, $password, $name, $mysqli, $id, $module_type) {
 	// $salt = $row['salt'];
 	// $hash = sha1($salt.$password);
 	
-	$query2 = "select user_id from users where username = '" . $username . "' AND password = '" . $password . "';";
+	$query2 = "SELECT user_id FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'";
 	
 	$result2 = mysqli_query($mysqli,$query2);
 	$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
