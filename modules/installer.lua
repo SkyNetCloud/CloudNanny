@@ -163,8 +163,7 @@ function hash(password)
 	getPaste(hash_api, "sha1_api")
 	os.loadAPI('sha1_api')
 	response = http.post(
-        "https://cloudnanny.skynetcloud.ca/code/salt.php",
-        "user="..user)
+        "https://cloudnanny.skynetcloud.ca/code/salt.php","user="..user)
 	salt = response.read()
 	hash = sha1_api.sha1(salt..password)
 	return hash
