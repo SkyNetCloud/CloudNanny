@@ -1,14 +1,13 @@
 <?php
 
 require_once('connection.php');
-
 $token = mysqli_real_escape_string($mysqli,$_POST['token']);
 $ign = mysqli_real_escape_string($mysqli,$_POST['ign']);
 $event = $_POST['event'];
 $discription = mysqli_real_escape_string($mysqli,$_POST['description']);
 $id = $_POST['id'];
 
-$user_id = validateToken($mysqli,$token, $id);
+$user_id = validateToken($token, $id);
 $event = htmlspecialchars($event);
 $ign = htmlspecialchars($ign);
 $discription = htmlspecialchars($discription);
@@ -29,7 +28,8 @@ function enterRecord($mysqli,$ign, $event, $discription, $user_id, $token) {
 	}
 }
 
-function validateToken($mysqli,$token, $id) {
+function validateToken($token, $id) {
+	global $mysqli;
 	$query = "select user_id from tokens where token = '".$token. "' AND computer_id = ".$id. ";";
 	$result = mysqli_query($mysqli,$query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
