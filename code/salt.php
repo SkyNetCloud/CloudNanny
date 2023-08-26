@@ -1,7 +1,7 @@
 <?php
 global $mysqli;
 
-$username = mysqli_real_escape_string($mysql,$_POST['user']);
+$username = mysqli_real_escape_string($mysqli,$_POST['user']);
 
 $username = htmlspecialchars($username);
 
