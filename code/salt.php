@@ -1,6 +1,6 @@
 <?php
 global $mysqli;
-$username = mysqli_real_escape_string($mysqli,trim($_POST["user"]));
+$username = trim($_POST["user"]);
 
 $username = htmlspecialchars($username);
 
