@@ -8,7 +8,7 @@ $username = htmlspecialchars($username);
 require_once('connection.php');
 
 $salt = '';
-$query = "select salt from users where username = '".$username. "';";	
+$query = "SELECT salt FROM users WHERE username = '".$username. "'";	
 $result = mysqli_query($mysqli,$query);
 
 
