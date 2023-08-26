@@ -1,6 +1,6 @@
 <?php
 global $mysqli;
-$username = trim($_POST["user"]);
+$username = $_POST['user'];
 
 $username = htmlspecialchars($username);
 
