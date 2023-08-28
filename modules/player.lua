@@ -108,57 +108,8 @@ end
 
 function record() 
 	term.setCursorPos(1,1)
-	players=s.getPlayers()
-	for num,player in pairs(players) do
-		for p,ign in pairs(player) do
-			if p=="name" then
-				playerData=s.getPlayerByName(ign)
-				data = playerData.all()
-				inventory=data.player.inventory
-				if not allowedPlayerArray[ign] then -- check the allow array
-					--print(ign.." is not on the allowed list")
-					invArray={} -- fresh copy
-					for a,b in pairs(inventory) do --getting player inventory
-						slot=b.all()
-						--print(slot.name,slot.qty) -- debug
-						invArray[a]=slot.name,slot.qty
-					end
-					if flag[ign]==nil or not flag[ign] then --recording first inventory scan
-						itemString[ign]=""
-						snapShot[ign]= invArray
-						--print("Initial snapshot")
-						post(ign,1," has entered sensor range")+
-						flag[ign]=true -- set player flag for later processing
-					else
-						snapShot2[ign]= invArray
-						--print("updated snapshot")
-						--print("comparing Inventory")
-						guilty,Items=compare(snapShot[ign],snapShot2[ign])
-						--redempt,Items=compare(snapShot2[ign],snapShot[ign]) --not sure how to work the dropped items
+	players=s.getOnlinePlayers()
 
-						if guilty then
-							for i,v in pairs(Items) do --building string
-								if v~="" or v~=nil then 
-									itemString[ign]=","..v..itemString[ign]
-		
-								end
-							end
-							--post(ign, 3, itemString[ign])
-							snapShot[ign]=snapShot2[ign]--inventory has been logged, can now reset the initial snapshot
-							itemString[ign]=""
-						else
-							--print(ign," - No item found")
-						end
-						sleep(1)
-						
-						if snapShot2[ign]~= nil then --recoding newer inventory until player leaves.
-                            snapShot2[ign]= nil
-                        end
-                    end
-				end
-			end
-		end
-	end
 	--Cleanup
 	playerData={}
 	data={}
@@ -171,13 +122,11 @@ end
 function leaveCheck()  
 	for ign,v in pairs(flag) do
 	--	print("Did ",ign," leave?")
-		local ok,msg=pcall(function ()s.getPlayerByName(ign) end)
+		local ok,msg=pcall(function ()s.getPlayersInRange(10,ign) end)
 		--print(msg) --debug
 		if not ok and flag[ign] then
 			--print(ign," has left.")
 			flag[ign]=false
-			snapShot[ign]=nil
-			snapShot2[ign]=nil
 			post(ign,2," has left sensor range")
 		end
 	end

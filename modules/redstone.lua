@@ -105,32 +105,33 @@ end
 
 function phone_home()
 	getInputs()
-    response = http.post("https://cloudnanny.skynetcloud.ca/code/redstone.php", "token="..token.."&id="..os.getComputerID().."&top_input="..top_input.."&bottom_input="..bottom_input.."&front_input="..front_input.."&back_input="..back_input.."&left_input="..left_input.."&right_input="..right_input)		
+    response = http.post("https://cloudnanny.skynetcloud.ca/code/redstone.php", 
+	"token="..token.."&id="..os.getComputerID().."&top_input="..top_input.."&bottom_input="..bottom_input.."&front_input="..front_input.."&back_input="..back_input.."&left_input="..left_input.."&right_input="..right_input)		
 	return_string = response.readAll()
 	
 	result_array = string.split(return_string,",")
 	current_version = tonumber(result_array[1])
 	
 	if tonumber(result_array[2]) == 1 then
-		rs.setOutput('top', true)
+		redstone.setOutput('top', true)
 		top = 'true'
 	elseif tonumber(result_array[3]) == 1 then
-		rs.setOutput('bottom', true)
+		redstone.setOutput('bottom', true)
 		bottom = 'true'
 	elseif tonumber(result_array[4]) == 1 then
-		rs.setOutput('back', true)
+		redstone.setOutput('back', true)
 		back = 'true'
 	elseif tonumber(result_array[5]) == 1 then
-		rs.setOutput('front', true)
+		redstone.setOutput('front', true)
 		front = 'true'
 	elseif tonumber(result_array[6]) == 1 then
-		rs.setOutput('left', true)
+		redstone.setOutput('left', true)
 		left = 'true'
 	elseif tonumber(result_array[7]) == 1 then
-		rs.setOutput('right', true)
+		redstone.setOutput('right', true)
 		right = 'true'
 	else
-		rs.setOutput('right', false)
+		redstone.setOutput('right', false)
 		right = 'false'
 	end
 
@@ -140,17 +141,17 @@ function phone_home()
 end
 
 function getInputs()
-	if rs.getInput('top') then
+	if redstone.getInput('top') then
 		top_input = 1
-	elseif rs.getInput('bottom') then
+	elseif redstone.getInput('bottom') then
 		bottom_input = 1
-	elseif rs.getInput('front') then
+	elseif redstone.getInput('front') then
 		front_input = 1
-	elseif rs.getInput('back') then
+	elseif redstone.getInput('back') then
 		back_input = 1
-	elseif rs.getInput('left') then
+	elseif redstone.getInput('left') then
 		left_input = 1
-	elseif rs.getInput('right') then
+	elseif redstone.getInput('right') then
 		right_input = 1
 	else
 		right_input = 0

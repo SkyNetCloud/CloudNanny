@@ -17,7 +17,7 @@ local user = ''
 
 -- Alternative (and much more versatile) function than "pastebin get"
 local function getPaste(id, filename)
-    local site = http.get("http://pastebin.com/raw.php?i="..id)
+    local site = http.get("https://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..filename)
     local content = site.readAll()
     if content then
         local file = fs.open(filename, "w")
@@ -25,7 +25,7 @@ local function getPaste(id, filename)
         file.close()
     else
         -- Unable to connect to Pastebin for whatever reason
-        error("Unable to contact Pastebin!")
+        error("Unable to contact Github!")
     end
 end
 
@@ -165,7 +165,7 @@ function hash(password)
 	response = http.post(
         "https://cloudnanny.skynetcloud.ca/code/salt.php",
 		"user="..user)
-	salt = response.read()
+	salt = response.readAll()
 	hash = sha1_api.sha1(salt..password)
 	return hash
 end
@@ -174,7 +174,7 @@ function login()
 	term.clear()
 	bars()
 	draw_text_term(1, 3, 'Register module to your CloudNanny account.', colors.lime, colors.black)
-	draw_text_term(1, 4, 'Create an account at cloudnanny.cloudnanny.skynetcloud.ca', colors.lightGray, colors.black)
+	draw_text_term(1, 4, 'Create an account at cloudnanny.skynetcloud.ca', colors.lightGray, colors.black)
 	
 	draw_text_term(1, 6, 'Username: ', colors.lime, colors.black)
 	term.setTextColor(colors.white)
