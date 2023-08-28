@@ -134,8 +134,8 @@ function install_module()
 	draw_text_term(1, 6, 'fetch from pastebin', colors.white, colors.black)
 	term.setCursorPos(1,7)
 	term.setTextColor(colors.white)
-    getPaste(pastebin, "CN_module")
-    
+    --getPaste(pastebin, "CN_module")
+    getFiles()
     sleep(0.5)
   
     draw_text_term(1, 9, 'create startup file', colors.white, colors.black)
@@ -144,7 +144,7 @@ function install_module()
     if fs.exists("startup") then
         fs.delete("startup")
     end
-    getPaste(startup, "startup")
+    --getPaste(startup, "startup")
     sleep(1)
   
     draw_text_term(1, 13, 'Setup Complete', colors.lime, colors.black)
