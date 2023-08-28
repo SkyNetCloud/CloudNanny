@@ -17,7 +17,7 @@ local user = ''
 
 -- Alternative (and much more versatile) function than "pastebin get"
 local function getPaste(id, filename)
-    local site = http.get("https://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..filename)
+    local site = http.get("http://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..filename)
     local content = site.readAll()
     if content then
         local file = fs.open(filename, "w")
