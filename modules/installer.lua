@@ -161,7 +161,7 @@ function install_module()
 end
 
 function hash(password)
-	getPaste(hash_api, "sha1_api")
+	--getPaste(hash_api, "sha1_api")
 	os.loadAPI('sha1_api')
 	response = http.post(
         "https://cloudnanny.skynetcloud.ca/code/salt.php",
