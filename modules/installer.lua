@@ -16,36 +16,37 @@ local updating = false
 local user = ''
 
 -- Alternative (and much more versatile) function than "pastebin get"
-local function getPaste(id, filename)
-    local site = http.get("http://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..filename)
-    local content = site.readAll()
-    if content then
-        local file = fs.open(filename, "w")
-        file.write(content)
-        file.close()
-    else
-        -- Unable to connect to Pastebin for whatever reason
-        error("Unable to contact Github!")
-    end
-end
+-- local function getPaste(id, filename)
+--     local site = http.get("http://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..id)
+--     local content = site.readAll()
+--     if content then
+--         local file = fs.open(filename, "w")
+--         file.write(content)
+--         file.close()
+--     else
+--         -- Unable to connect to Pastebin for whatever reason
+--         error("Unable to contact Github!")
+--     end
+-- end
 
 --[[Even better installation function that installs all files
     You'd just need to define which computer is using which module
     or find a way to have each computer use all modules at once
     It is possible, I guarantee it.
     Remove brackets to enable
+	]]
 local function getFiles()
     local files = {
-        installer = "Q8ah3K9S",
-        player_module = "rWp0GXDW",
-        redstone_module = "KkCYWkSU",
-        fluid_module = "x7K3zUAC",
-        energy_module = "RxLuZWHp",
-        hash_api = "FLQ68J88",
-        startup = "KnmEN37h"
+		installer = "installer.lua",
+		player_module = "player.lua",
+		redstone_module = "redstone.lua",
+		fluid_module = "fluid.lua",
+		energy_module = "energy.lua",
+		hash_api = "SHA1.lua",
+		startup = "startup.lua"
     }
     for i, v in pairs(files) do
-        local site = http.get("http://pastebin.com/raw.php?i="..v)
+        local site = http.get("http://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..v)
         local content = site.readAll()
         if content then
             local file = fs.open(i, "w")
@@ -57,7 +58,7 @@ local function getFiles()
     end
 end
 
-Alternatively, you can host all of these files on Github, and retrieve them from it too.
+--[[Alternatively, you can host all of these files on Github, and retrieve them from it too.
 Use "https://raw.githubusercontent.com/jaranvil/CloudNanny/master/modules/"..filename
 instead of "http://pastebin.com/raw.php?i="..pasteID
 to retrieve them. It's very nice to do it that way, considering you can set up an automatic updater.
