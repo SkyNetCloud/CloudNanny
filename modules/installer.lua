@@ -16,37 +16,36 @@ local updating = false
 local user = ''
 
 -- Alternative (and much more versatile) function than "pastebin get"
--- local function getPaste(id, filename)
---     local site = http.get("http://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..id)
---     local content = site.readAll()
---     if content then
---         local file = fs.open(filename, "w")
---         file.write(content)
---         file.close()
---     else
---         -- Unable to connect to Pastebin for whatever reason
---         error("Unable to contact Github!")
---     end
--- end
+local function getPaste(id, filename)
+    local site = http.get("http://pastebin.com/raw.php?i="..id)
+    local content = site.readAll()
+    if content then
+        local file = fs.open(filename, "w")
+        file.write(content)
+        file.close()
+    else
+        -- Unable to connect to Pastebin for whatever reason
+        error("Unable to contact Pastebin!")
+    end
+end
 
 --[[Even better installation function that installs all files
     You'd just need to define which computer is using which module
     or find a way to have each computer use all modules at once
     It is possible, I guarantee it.
     Remove brackets to enable
-	]]
 local function getFiles()
     local files = {
-		installer = "installer.lua",
-		player_module = "player.lua",
-		redstone_module = "redstone.lua",
-		fluid_module = "fluid.lua",
-		energy_module = "energy.lua",
-		hash_api = "SHA1.lua",
-		startup = "startup.lua"
+        installer = "Q8ah3K9S",
+        player_module = "rWp0GXDW",
+        redstone_module = "KkCYWkSU",
+        fluid_module = "x7K3zUAC",
+        energy_module = "RxLuZWHp",
+        hash_api = "FLQ68J88",
+        startup = "KnmEN37h"
     }
     for i, v in pairs(files) do
-        local site = http.get("http://raw.githubusercontent.com/SkyNetCloud/CloudNanny/master/modules/"..v)
+        local site = http.get("http://pastebin.com/raw.php?i="..v)
         local content = site.readAll()
         if content then
             local file = fs.open(i, "w")
@@ -58,7 +57,7 @@ local function getFiles()
     end
 end
 
---[[Alternatively, you can host all of these files on Github, and retrieve them from it too.
+Alternatively, you can host all of these files on Github, and retrieve them from it too.
 Use "https://raw.githubusercontent.com/jaranvil/CloudNanny/master/modules/"..filename
 instead of "http://pastebin.com/raw.php?i="..pasteID
 to retrieve them. It's very nice to do it that way, considering you can set up an automatic updater.
@@ -134,8 +133,8 @@ function install_module()
 	draw_text_term(1, 6, 'fetch from pastebin', colors.white, colors.black)
 	term.setCursorPos(1,7)
 	term.setTextColor(colors.white)
-    --getPaste(pastebin, "CN_module")
-    getFiles()
+    getPaste(pastebin, "CN_module")
+    
     sleep(0.5)
   
     draw_text_term(1, 9, 'create startup file', colors.white, colors.black)
@@ -144,7 +143,7 @@ function install_module()
     if fs.exists("startup") then
         fs.delete("startup")
     end
-    --getPaste(startup, "startup")
+    getPaste(startup, "startup")
     sleep(1)
   
     draw_text_term(1, 13, 'Setup Complete', colors.lime, colors.black)
@@ -161,7 +160,7 @@ function install_module()
 end
 
 function hash(password)
-	--getPaste(hash_api, "sha1_api")
+	getPaste(hash_api, "sha1_api")
 	os.loadAPI('sha1_api')
 	response = http.post(
         "https://cloudnanny.skynetcloud.ca/code/salt.php",
@@ -175,7 +174,7 @@ function login()
 	term.clear()
 	bars()
 	draw_text_term(1, 3, 'Register module to your CloudNanny account.', colors.lime, colors.black)
-	draw_text_term(1, 4, 'Create an account at cloudnanny.skynetcloud.ca', colors.lightGray, colors.black)
+	draw_text_term(1, 4, 'Create an account at cloudnanny.cloudnanny.skynetcloud.ca', colors.lightGray, colors.black)
 	
 	draw_text_term(1, 6, 'Username: ', colors.lime, colors.black)
 	term.setTextColor(colors.white)
