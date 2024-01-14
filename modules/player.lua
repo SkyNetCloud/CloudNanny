@@ -112,7 +112,7 @@ function record()
 	for num,player in pairs(players) do
 		for p,ign in pairs(player) do
 			if p=="name" then
-				playerData = table.concat(s.getPlayersInRange(10,ign))
+				post(ign,1," has entered sensor range")
 			end
 		end
 	end
@@ -145,47 +145,12 @@ end
 	-- token and computer ID (used to verify source)
 	-- event type: 1 = player entering, 2 = player leaving, 3 = inventory change
 	-- ign, players name
-	-- discription of event\
-
-	function logging(ign, event, description)
-		if peripheral.getType("right")== "monitor" then
-			mon = peripheral.wrap("right")
-		elseif peripheral.getType("left")~="monitor" then
-			mon = peripheral.wrap("left")
-		else
-			return
-		end
-		mon.clear()
-		mon.setTextScale(0.5)
-		monMaxX,monMaxY = mon.getSize()
-		print(monMaxX,monMaxY)
-		if monMaxX < 61 then
-			mon.write("monitor too small. Min 4 wide")
-			return
-		end
-		sw = fs.open("log.txt",fs.exists("log.txt") and "a" or "w")
-		line=ign.." "..description
-		sw.writeLine(os.day().."/"..os.time()..": "..ign.." "..description)
-		sw.close()
-		sr = fs.open("log.txt","r")
-		monY=1
-		msg="starting log..."
-		while msg~=nil do 
-			ok,msg = pcall(sr.readLine)
-			mon.setCursorPos(1,monY)
-			mon.write(msg)
-			monY=monY+1
-		end
-		sr.close()
-	
-	
-	end
-
+	-- description of event
 	
 -- e.g. post('tom', 2, ' has left sensor range')
 function post(ign, event, discription)  
     http.post("https://cloudnanny.skynetcloud.ca/code/log.php",
-        "token="..token.."&ign="..ign.."&id="..os.getComputerID().."&event="..event.."&discription="..discription)
+        "token="..token.."&ign="..ign.."&id="..os.getComputerID().."&event="..event.."&description="..description)
 end
 
 function tablelength(T) --get real count of table
