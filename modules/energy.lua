@@ -1,13 +1,3 @@
----------------------------------------------
---      Power module for caftNanny
---      by demethan
---      www.breakfastcraft.com
---		cloudnanny.skynetcloud.ca
---  	2015-08-11: added storage block detection
---					added visual storage bar
---					fixed modem support
----------------------------------------------
-
 -- variables
 
 local bat={}

@@ -1,6 +1,6 @@
 <?php
 
-$mysqli = mysqli_connect('127.0.0.1', 'SkyNetCloud', 'SkyNetCloud#','cloudnanny');
+$mysqli = mysqli_connect('127.0.0.1', 'fake', 'Fake#','cloudnanny');
 
 
 if ($mysqli -> connect_errno) {
