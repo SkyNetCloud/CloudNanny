@@ -105,7 +105,7 @@ function logs(scanner, visitor) {
 						record = $(this);
 					$(newVisitor).find('#player_name').text($(this).attr('ign'));
 				//	$(newVisitor).find('#last_seen').text(" Last Seen: " + formatDate($(this).attr('last_seen')));
-					$(newVisitor).find('#player_avatar').attr('src', 'https://mcapi.ca/avatar/2d/'+$(this).attr('ign')+'/45');
+					$(newVisitor).find('#player_avatar').attr('src', 'https://mc-heads.net/avatar/'+$(this).attr('ign')+'/45');
 
 					$(newVisitor).find('#detailsBtn').click(function(e) {
 						playerRecord($(record).attr('ign'), $(record).attr('token'), $(newVisitor).find('.vist_details'));

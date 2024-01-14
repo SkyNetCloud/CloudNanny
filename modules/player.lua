@@ -109,7 +109,13 @@ end
 function record() 
 	term.setCursorPos(1,1)
 	players=s.getOnlinePlayers()
-
+	for num,player in pairs(players) do
+		for p,ign in pairs(player) do
+			if p=="name" then
+				playerData = table.concat(s.getPlayersInRange(10,ign))
+			end
+		end
+	end
 	--Cleanup
 	playerData={}
 	data={}
@@ -117,27 +123,64 @@ function record()
 	guilty=nil
 end
 
+
 -- iterate through all players with an active flag
 -- see if they're still in range of the scanner
 function leaveCheck()  
 	for ign,v in pairs(flag) do
-	--	print("Did ",ign," leave?")
-		local ok,msg=pcall(function ()s.getPlayersInRange(10,ign) end)
-		--print(msg) --debug
+	print("Did ",ign," leave?")
+		local ok,msg=pcall(function ()table.concat(s.getOnlinePlayers()) end)
+		print(msg) --debug
 		if not ok and flag[ign] then
-			--print(ign," has left.")
+			print(ign," has left.")
 			flag[ign]=false
 			post(ign,2," has left sensor range")
 		end
 	end
 end
 
+
 -- records a log entry on the server
 -- passes to server:
 	-- token and computer ID (used to verify source)
 	-- event type: 1 = player entering, 2 = player leaving, 3 = inventory change
 	-- ign, players name
-	-- discription of event
+	-- discription of event\
+
+	function logging(ign, event, description)
+		if peripheral.getType("right")== "monitor" then
+			mon = peripheral.wrap("right")
+		elseif peripheral.getType("left")~="monitor" then
+			mon = peripheral.wrap("left")
+		else
+			return
+		end
+		mon.clear()
+		mon.setTextScale(0.5)
+		monMaxX,monMaxY = mon.getSize()
+		print(monMaxX,monMaxY)
+		if monMaxX < 61 then
+			mon.write("monitor too small. Min 4 wide")
+			return
+		end
+		sw = fs.open("log.txt",fs.exists("log.txt") and "a" or "w")
+		line=ign.." "..description
+		sw.writeLine(os.day().."/"..os.time()..": "..ign.." "..description)
+		sw.close()
+		sr = fs.open("log.txt","r")
+		monY=1
+		msg="starting log..."
+		while msg~=nil do 
+			ok,msg = pcall(sr.readLine)
+			mon.setCursorPos(1,monY)
+			mon.write(msg)
+			monY=monY+1
+		end
+		sr.close()
+	
+	
+	end
+
 	
 -- e.g. post('tom', 2, ' has left sensor range')
 function post(ign, event, discription)  
@@ -180,6 +223,10 @@ function start_recording()
 	while true do
 		-- run scan
 		ok,msg=pcall(record)
+		if not ok then 
+			print(msg)
+			break
+		end
 		leaveCheck()
 		
 		-- animate screen and delay
@@ -199,7 +246,6 @@ end
 
 function start()
 	s=peripheral.find("playerDetector")
-	i=peripheral.find("inventoryManager")
 	heart=0
 	term.clear()
 	term.setCursorPos(1,1)
