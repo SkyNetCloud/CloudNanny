@@ -84,8 +84,8 @@
           <div class="large-4 columns">
             <h3 style="color:#0099FF">Mod Requirements:</h3>
             <ul>
-              <li>ComputerCraft 1.6 +</li>
-              <li>OpenPeripherals (for some modules)</li>
+             <li>CC: Tweaked</li>
+              <li>Advanced Peripherals (for some modules)</li>
             </ul>
           </div>
            <div class="large-4 columns">
