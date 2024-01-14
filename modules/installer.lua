@@ -174,7 +174,7 @@ function login()
 	term.clear()
 	bars()
 	draw_text_term(1, 3, 'Register module to your CloudNanny account.', colors.lime, colors.black)
-	draw_text_term(1, 4, 'Create an account at cloudnanny.cloudnanny.skynetcloud.ca', colors.lightGray, colors.black)
+	draw_text_term(1, 4, 'Create an account at cloudnanny.skynetcloud.ca', colors.lightGray, colors.black)
 	
 	draw_text_term(1, 6, 'Username: ', colors.lime, colors.black)
 	term.setTextColor(colors.white)
@@ -220,12 +220,21 @@ function player_tracker()
 	name()
 end
 
-function choose_module(input) 
+
+function power_system()
+	
+	-- code to check that openperipheral sensor is present. give relavent error
+	
+	type = '2'
+	name()
+end
+
+
+function choose_module(input)
 	if input == '1' then
 		player_tracker()
 	elseif input == '2' then
-		type = '2'
-		name()
+		power_system()
 	elseif input == '3' then
 		type = '3'
 		name()
