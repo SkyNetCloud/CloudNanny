@@ -70,7 +70,7 @@
         <div class="large-12 columns footer_middle">
           <div class="row">
             <div class="large-2 columns">
-              <img src="img/skin.PNG" style="height:200px;">
+              <img src="https://crafatar.com/renders/body/283502a24134454cbb4739c3875b0dd4" style="height:200px;">
             </div>
             <div class="large-4 columns" style="height:200px">
               <p><h2 style="font-weight:bold;color:#cccccc;">cloudnanny.skynetcloud.ca</h2>

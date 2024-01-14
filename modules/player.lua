@@ -5,11 +5,8 @@
 -- pastebin for installer
 local installer = "a3Rs0Tzg"
 -- players ignored by senors
-local allowedPlayerArray={}
+local allowedPlayerArray={["SkyNetCloud"]=true,["SerpentesNL"]=false,["Demethan"]=true,["waerloga"]=true}
 -- inventory arrays to compare
-local snapShot={}
-local snapShot2={}
-local itemString={}
 -- players currently inside sensor range 
 local flag={}
 -- counter for scanning animation
@@ -106,49 +103,34 @@ function round(what, precision)
    return math.floor(what*math.pow(10,precision)+0.5) / math.pow(10,precision)
 end
 
+
+
 function record() 
 	term.setCursorPos(1,1)
-	players=s.getOnlinePlayers()
-	for num,player in pairs(players) do
-		for p,ign in pairs(player) do
-			if p=="name" then
-				post(ign,1," has entered sensor range")
-			end
+	players = s.getOnlinePlayers()
+    for  num,player in pairs(players) do
+		in_range = s.isPlayerInRange(15,player)
+		for p,ign in pairs(in_range) do
+			post(tostring(ign),1, " Has entered senor range")
+			flag[ign]=true 
 		end
 	end
-	--Cleanup
-	playerData={}
-	data={}
-	inventory={}
-	guilty=nil
 end
-
 
 -- iterate through all players with an active flag
 -- see if they're still in range of the scanner
 function leaveCheck()  
 	for ign,v in pairs(flag) do
-	print("Did ",ign," leave?")
-		local ok,msg=pcall(function ()table.concat(s.getOnlinePlayers()) end)
-		print(msg) --debug
-		if not ok and flag[ign] then
-			print(ign," has left.")
+		local ok,msg=pcall(function ()s.isPlayersInRange(15) end)
+		if not msg and flag[ign] then
 			flag[ign]=false
-			post(ign,2," has left sensor range")
+			post(tostring(ign),2," has left sensor range")
 		end
 	end
 end
 
-
--- records a log entry on the server
--- passes to server:
-	-- token and computer ID (used to verify source)
-	-- event type: 1 = player entering, 2 = player leaving, 3 = inventory change
-	-- ign, players name
-	-- description of event
-	
 -- e.g. post('tom', 2, ' has left sensor range')
-function post(ign, event, discription)  
+function post(ign, event, description)  
     http.post("https://cloudnanny.skynetcloud.ca/code/log.php",
         "token="..token.."&ign="..ign.."&id="..os.getComputerID().."&event="..event.."&description="..description)
 end
@@ -188,10 +170,6 @@ function start_recording()
 	while true do
 		-- run scan
 		ok,msg=pcall(record)
-		if not ok then 
-			print(msg)
-			break
-		end
 		leaveCheck()
 		
 		-- animate screen and delay
@@ -201,7 +179,7 @@ function start_recording()
 		sleep(0.5)
 		
 		-- main active status with server
-		time = time + 1
+		time = time + 5
 		if time > 30 then
 			time=0
 			phone_home()
