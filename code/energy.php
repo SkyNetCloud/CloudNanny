@@ -1,5 +1,4 @@
 <?php
-global $mysqli;
 
 $version = 1;
 
@@ -26,6 +25,12 @@ if ($result) {
 	echo $version;
 } else {
 	echo 'error: token update query failed.';
+}
+
+
+function dbError(&$xmlDoc, &$xmlNode, $theMessage) {
+	$errorNode = $xmlDoc->createElement('mysqlError', $theMessage);
+	$xmlNode->appendChild($errorNode);
 }
 
 

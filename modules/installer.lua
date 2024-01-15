@@ -183,11 +183,11 @@ function login()
 	term.setTextColor(colors.white)
 	pass = read("*")
 	
-	password = hash(pass)
+
 	
 	response = http.post(
         "https://cloudnanny.skynetcloud.ca/code/signin.php",
-        "user="..user.."&pass="..password.."&id="..os.getComputerID().."&name="..module_name.."&module_type="..type)
+        "user="..user.."&pass="..hash(pass).."&id="..os.getComputerID().."&module_name="..module_name.."&module_type="..module_type)
 	token = response.readAll()
 
 	if token == 'error' then
