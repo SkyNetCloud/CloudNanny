@@ -35,8 +35,9 @@ function signIn($username, $password, $name, $mysqli, $id, $module_type) {
 	$query2 = "SELECT user_id FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'";
 	
 	$result2 = mysqli_query($mysqli,$query2);
-	$row2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
+	
 
+	while ($row2 = $result2->fetch_row()) {
 	if ($row2['user_id'] != '') {
 		$token = createToken($mysqli, $row2['user_id'], $name, $id, $username, $module_type);
 		
@@ -53,6 +54,7 @@ function signIn($username, $password, $name, $mysqli, $id, $module_type) {
 		echo $token;
 	} else {
 		echo 'error';
+	}
 	}
 }
 
